@@ -1,8 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using Microsoft.Xna.Framework;
 
 namespace XRealEngine.Framework
 {
@@ -30,8 +30,7 @@ namespace XRealEngine.Framework
 
         public void Initialize()
         {
-            this.graphicDeviceService = new GraphicsDeviceService(this);
-            this.graphicDeviceService.CreateDevice();
+            this.graphicDeviceService = GraphicsDeviceService.AddRef(this.Handle, this.ClientSize.Width, this.ClientSize.Height);
             this.contentManager = new ContentManager(this);
             this.isInitialized = true;
         }
@@ -87,7 +86,6 @@ namespace XRealEngine.Framework
             if (deviceNeedsReset)
             {
                 graphicDeviceService.ResetDevice(ClientSize.Width, ClientSize.Height);
-                
             }
 
             base.OnSizeChanged(e);
@@ -113,8 +111,9 @@ namespace XRealEngine.Framework
         {
             if (!DesignMode)
             {
+                GraphicsDevice.Viewport = GetViewPort();
                 Rectangle sourceRectangle = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
-                GraphicsDevice.Present(sourceRectangle, null, this.Handle);
+                GraphicsDevice.Present(null, null, this.Handle);
             }         
         } 
     }

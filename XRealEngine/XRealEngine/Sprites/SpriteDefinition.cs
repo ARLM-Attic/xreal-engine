@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using XRealEngine.Framework;
 
 namespace XRealEngine.Framework.Sprites
 {
@@ -9,6 +10,10 @@ namespace XRealEngine.Framework.Sprites
     //////////////////////////////////////////////////////////////////////////////////////////////////// 
     public class SpriteDefinition
     {
+        internal delegate void NameChangedEventHandler(object sender, NameChangedEventArgs e);
+
+        internal event NameChangedEventHandler OnNameChanged;
+
         #region Fields
 
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -20,11 +25,6 @@ namespace XRealEngine.Framework.Sprites
         /// <summary>The boundaries of the sprite in the sprites sheet</summary>
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
         private Rectangle rectangle;
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////// 
-        /// <summary>The sprites sheet containing the sprite</summary>
-        //////////////////////////////////////////////////////////////////////////////////////////////////// 
-        private ISpritesSheet sheet;
 
         #endregion
 
@@ -41,26 +41,14 @@ namespace XRealEngine.Framework.Sprites
             }
             internal set 
             {
-                if (Sheet != null)
+                if (name != value)
                 {
-                    sheet.RemoveSpriteDefinition(this);
+                    string oldName = name;
                     name = value;
-                    sheet.AddSpriteDefinition(this);
-                }
-                else
-                {
-                    name = value;
+                    NameChangedEventArgs e = new NameChangedEventArgs(oldName, name);
+                    OnNameChanged(this, e);
                 }
             }
-        }
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////// 
-        /// <summary>Gets the sprites sheet containing the sprite</summary>
-        //////////////////////////////////////////////////////////////////////////////////////////////////// 
-        public ISpritesSheet Sheet
-        {
-            get { return sheet; }
-            internal set { sheet = value; }
         }
 
         #endregion

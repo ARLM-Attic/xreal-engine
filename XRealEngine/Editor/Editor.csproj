@@ -111,6 +111,9 @@
     <Compile Include="SpriteSheetEditor.Designer.cs">
       <DependentUpon>SpriteSheetEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpriteSheetViewerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <NestedContentProject Include="Content\Content.contentproj">

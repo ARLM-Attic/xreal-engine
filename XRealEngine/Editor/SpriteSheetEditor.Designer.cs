@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.xnaViewer1 = new XRealEngine.Framework.XnaViewer();
+            this.spriteSheetViewerControl1 = new Editor.SpriteSheetViewerControl();
             this.SuspendLayout();
             // 
-            // xnaViewer1
+            // spriteSheetViewerControl1
             // 
-            this.xnaViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xnaViewer1.Location = new System.Drawing.Point(0, 0);
-            this.xnaViewer1.Name = "xnaViewer1";
-            this.xnaViewer1.Size = new System.Drawing.Size(284, 264);
-            this.xnaViewer1.TabIndex = 0;
-            this.xnaViewer1.Text = "xnaViewer1";
+            this.spriteSheetViewerControl1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.spriteSheetViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spriteSheetViewerControl1.Location = new System.Drawing.Point(0, 0);
+            this.spriteSheetViewerControl1.Name = "spriteSheetViewerControl1";
+            this.spriteSheetViewerControl1.Size = new System.Drawing.Size(284, 264);
+            this.spriteSheetViewerControl1.TabIndex = 0;
+            this.spriteSheetViewerControl1.Text = "spriteSheetViewerControl1";            
             // 
             // SpriteSheetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 264);
-            this.Controls.Add(this.xnaViewer1);
+            this.Controls.Add(this.spriteSheetViewerControl1);
             this.Name = "SpriteSheetEditor";
             this.Text = "SpriteSheetEditor";
             this.ResumeLayout(false);
@@ -54,6 +55,6 @@
 
         #endregion
 
-        private XRealEngine.Framework.XnaViewer xnaViewer1;
+        private SpriteSheetViewerControl spriteSheetViewerControl1;
     }
 }

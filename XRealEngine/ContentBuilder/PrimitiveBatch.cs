@@ -90,12 +90,7 @@ namespace XRealEngine.Framework
             basicEffect = new BasicEffect(device, null);
             basicEffect.VertexColorEnabled = true;
 
-            // projection uses CreateOrthographicOffCenter to create 2d projection
-            // matrix with 0,0 in the upper left.
-            basicEffect.Projection = Matrix.CreateOrthographicOffCenter
-                (0, device.Viewport.Width,
-                device.Viewport.Height, 0,
-                0, 1);
+            
         }
 
         public void Dispose()
@@ -147,6 +142,10 @@ namespace XRealEngine.Framework
             // prepare the graphics device for drawing by setting the vertex declaration
             // and telling our basic effect to begin.
             device.VertexDeclaration = vertexDeclaration;
+            // projection uses CreateOrthographicOffCenter to create 2d projection
+            // matrix with 0,0 in the upper left.
+            basicEffect.Projection = Matrix.CreateOrthographicOffCenter(0, device.Viewport.Width, device.Viewport.Height, 0, 0, 1);
+
             basicEffect.Begin();
             basicEffect.CurrentTechnique.Passes[0].Begin();
 

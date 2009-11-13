@@ -46,19 +46,17 @@ namespace XRealEngine.Framework.Sprites
         public void AddSpriteDefinition(SpriteDefinition sprite)
         {
             if (String.IsNullOrEmpty(sprite.Name)) sprite.Name = String.Format("Sprite_{0:D2}", spritesList.Count);
-            sprite.Sheet = this;
+
+            sprite.OnNameChanged += new SpriteDefinition.NameChangedEventHandler(sprite_OnNameChanged);
+
             spritesList.Add(sprite);
             spritesDictionnary.Add(sprite.Name, sprite);
         }
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>Remove the sprite definition from the spritesheet</summary>
-        /// <param name="sprite">The sprite definition to remove</param>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void RemoveSpriteDefinition(SpriteDefinition sprite)
+        private void sprite_OnNameChanged(object sender, NameChangedEventArgs e)
         {
-            spritesList.Remove(sprite);
-            spritesDictionnary.Remove(sprite.Name);
+            spritesDictionnary.Remove(e.OldName);
+            spritesDictionnary.Add(e.NewName, (SpriteDefinition)sender);
         }
 
         #endregion

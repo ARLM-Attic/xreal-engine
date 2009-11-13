@@ -87,15 +87,17 @@
     <Compile Include="ContentBuilder.cs" />
     <Compile Include="ContentFile.cs" />
     <Compile Include="ContentFileManager.cs" />
+    <Compile Include="GraphicsDeviceControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GraphicsDeviceService.cs" />
     <Compile Include="Loggers\TextBoxLogger.cs" />
+    <Compile Include="ActiveSelectionChangedEventArgs.cs" />
     <Compile Include="PrimitiveBatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RectangularSelection.cs" />
     <Compile Include="SelectionsManager.cs" />
-    <Compile Include="XnaViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ServiceContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

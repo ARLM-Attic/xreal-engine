@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
+using XRealEngine.Framework.Sprites;
+using Microsoft.Xna.Framework.Content;
 
 namespace Editor
 {
@@ -20,6 +22,13 @@ namespace Editor
             this.MouseUp += new MouseEventHandler(SpriteSheetViewerControl_MouseUp);
             this.MouseMove += new MouseEventHandler(SpriteSheetViewerControl_MouseMove);
             Application.Idle += delegate { Invalidate(); };
+
+            SpritesSheet sheet = new SpritesSheet();
+            ContentManager contentManager = new ContentManager(this.Services);
+            sheet.Texture = Texture2D.FromFile(this.GraphicsDevice, @"C:\Users\LEPECQMI\Documents\Visual Studio 2008\Projects\XRealEngine\Samples\maps1.png");
+            sheet.AddSpriteDefinition(new SpriteDefinition("test", new Rectangle(10, 20, 30, 40)));
+            Serializer.Serialize<SpritesSheet>(@"C:\Users\LEPECQMI\Documents\Visual Studio 2008\Projects\XRealEngine\Samples\maps1_test.xml", sheet);
+
         }
 
         void SpriteSheetViewerControl_MouseMove(object sender, MouseEventArgs e)

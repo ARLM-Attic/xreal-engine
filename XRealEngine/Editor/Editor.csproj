@@ -71,6 +71,7 @@
       <Private>False</Private>
       <SpecificVersion>True</SpecificVersion>
     </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline, Version=3.1.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=3.1.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=MSIL">
       <Private>False</Private>
       <SpecificVersion>True</SpecificVersion>
@@ -105,6 +106,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="SpriteSheetEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +172,10 @@
     <ProjectReference Include="..\ContentBuilder\ContentBuilder.csproj">
       <Project>{1928CEBE-E9E0-4073-A625-43AB1DABD391}</Project>
       <Name>ContentBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XRealEngine\XRealEngine.csproj">
+      <Project>{C9C7DC97-45D8-43F9-907B-35809AC49BE5}</Project>
+      <Name>XRealEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

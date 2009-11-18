@@ -129,7 +129,7 @@ namespace XRealEngine.Framework
             {
                 BuildItem buildItem = msBuildProject.AddNewItem("Compile", content.Filename);
                 buildItem.SetMetadata("Link", Path.GetFileName(content.Filename));
-                buildItem.SetMetadata("Name", content.Name);
+                buildItem.SetMetadata("Name", content.AssetName);
                 if (!String.IsNullOrEmpty(content.Importer)) buildItem.SetMetadata("Importer", content.Importer);
                 if (!String.IsNullOrEmpty(content.Processor)) buildItem.SetMetadata("Processor", content.Processor);
             }

@@ -8,14 +8,14 @@ namespace XRealEngine.Framework
     public struct ContentFile
     {
         public string Filename;
-        public string Name;
+        public string AssetName;
         public string Importer;
         public string Processor;
 
-        public ContentFile(string filename, string name, string importer, string processor)
+        public ContentFile(string filename, string assetName, string importer, string processor)
         {
             this.Filename = filename;
-            this.Name = name;
+            this.AssetName = assetName;
             this.Importer = importer;
             this.Processor = processor;
         }

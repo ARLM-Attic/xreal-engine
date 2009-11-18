@@ -23,13 +23,17 @@ namespace XRealEngine.Framework.Sprites
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Dictionary that holds the sprites definitions contained in the SpritesSheet</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        [ContentSerializerIgnore]
         private Dictionary<String, SpriteDefinition> spritesDictionnary;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Texture that holds the different sprites graphics</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializer(SharedResource = true)]
+        [ContentSerializerIgnore]
         Texture2D texture;
+
+        [ContentSerializer]
+        string textureAssetName;
 
         #endregion
 
@@ -42,7 +46,10 @@ namespace XRealEngine.Framework.Sprites
         public Texture2D Texture
         {
             get { return texture; }
-            set { texture = value; }
+            set 
+            { texture = value; 
+              textureAssetName = value.Name;
+            }
         }
 
         #endregion

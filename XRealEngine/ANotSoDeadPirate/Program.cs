@@ -1,17 +1,18 @@
 using System;
-using System.Windows.Forms;
 
-namespace Editor
+namespace ANotSoDeadPirate
 {
     static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
         static void Main(string[] args)
         {
-            Application.Run(new Main());
+            using (Game1 game = new Game1())
+            {
+                game.Run();
+            }
         }
     }
 }

@@ -37,10 +37,10 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabBottom = new System.Windows.Forms.TabControl();
             this.tabLog = new System.Windows.Forms.TabPage();
-            this.tabLeftPanel = new System.Windows.Forms.TabControl();
-            this.tabProjectExplorer = new System.Windows.Forms.TabPage();
             this.listViewLog = new System.Windows.Forms.ListView();
             this.columnDescription = new System.Windows.Forms.ColumnHeader();
+            this.tabLeftPanel = new System.Windows.Forms.TabControl();
+            this.tabProjectExplorer = new System.Windows.Forms.TabPage();
             this.projectExplorer = new Editor.Controls.ContentProjectControl();
             this.backgroundBuilder = new System.ComponentModel.BackgroundWorker();
             this.menuStrip.SuspendLayout();
@@ -93,9 +93,12 @@
             // 
             // statusLabel
             // 
+            this.statusLabel.AutoSize = false;
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(39, 17);
+            this.statusLabel.Size = new System.Drawing.Size(627, 17);
+            this.statusLabel.Spring = true;
             this.statusLabel.Text = "Ready";
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // splitContainer1
             // 
@@ -150,6 +153,26 @@
             this.tabLog.Text = "Log";
             this.tabLog.UseVisualStyleBackColor = true;
             // 
+            // listViewLog
+            // 
+            this.listViewLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listViewLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnDescription});
+            this.listViewLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewLog.GridLines = true;
+            this.listViewLog.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewLog.Location = new System.Drawing.Point(3, 3);
+            this.listViewLog.Name = "listViewLog";
+            this.listViewLog.Size = new System.Drawing.Size(467, 155);
+            this.listViewLog.TabIndex = 0;
+            this.listViewLog.UseCompatibleStateImageBehavior = false;
+            this.listViewLog.View = System.Windows.Forms.View.Details;
+            // 
+            // columnDescription
+            // 
+            this.columnDescription.Text = "";
+            this.columnDescription.Width = 500;
+            // 
             // tabLeftPanel
             // 
             this.tabLeftPanel.Alignment = System.Windows.Forms.TabAlignment.Bottom;
@@ -171,32 +194,13 @@
             this.tabProjectExplorer.Text = "Project Explorer";
             this.tabProjectExplorer.UseVisualStyleBackColor = true;
             // 
-            // listViewLog
-            // 
-            this.listViewLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listViewLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnDescription});
-            this.listViewLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewLog.GridLines = true;
-            this.listViewLog.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listViewLog.Location = new System.Drawing.Point(3, 3);
-            this.listViewLog.Name = "listViewLog";
-            this.listViewLog.Size = new System.Drawing.Size(467, 155);
-            this.listViewLog.TabIndex = 0;
-            this.listViewLog.UseCompatibleStateImageBehavior = false;
-            this.listViewLog.View = System.Windows.Forms.View.Details;
-            // 
-            // columnDescription
-            // 
-            this.columnDescription.Text = "";
-            this.columnDescription.Width = 500;
-            // 
             // projectExplorer
             // 
             this.projectExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.projectExplorer.Location = new System.Drawing.Point(0, 0);
             this.projectExplorer.Logger = null;
             this.projectExplorer.Name = "projectExplorer";
+            this.projectExplorer.ProjectFullPath = null;
             this.projectExplorer.Size = new System.Drawing.Size(180, 325);
             this.projectExplorer.TabIndex = 0;
             // 

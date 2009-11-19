@@ -82,16 +82,14 @@ namespace XRealEngine.Framework.Loggers
             eventSource.TargetFinished += new TargetFinishedEventHandler(eventSource_TargetFinished);
             eventSource.TargetStarted += new TargetStartedEventHandler(eventSource_TargetStarted);
             eventSource.MessageRaised += new BuildMessageEventHandler(eventSource_MessageRaised);
-            eventSource.AnyEventRaised += new AnyEventHandler(eventSource_AnyEventRaised);
+            /*eventSource.AnyEventRaised += new AnyEventHandler(eventSource_AnyEventRaised);
             eventSource.CustomEventRaised += new CustomBuildEventHandler(eventSource_CustomEventRaised);
             
             eventSource.ProjectFinished += new ProjectFinishedEventHandler(eventSource_ProjectFinished);
             eventSource.ProjectStarted += new ProjectStartedEventHandler(eventSource_ProjectStarted);
             
             eventSource.TaskFinished += new TaskFinishedEventHandler(eventSource_TaskFinished);
-            eventSource.TaskStarted += new TaskStartedEventHandler(eventSource_TaskStarted);
-            
-         
+            eventSource.TaskStarted += new TaskStartedEventHandler(eventSource_TaskStarted);*/
         }
 
         #endregion
@@ -113,19 +111,19 @@ namespace XRealEngine.Framework.Loggers
 
         private void eventSource_MessageRaised(object sender, Microsoft.Build.Framework.BuildMessageEventArgs e)
         {
-            if (needToLog) this.AddNode(e.Message);
+            if ((needToLog) && (e.Importance <= MessageImportance.Normal)) this.AddNode(String.Format("      {0}", e.Message)); 
         }
 
         private void eventSource_ErrorRaised(object sender, Microsoft.Build.Framework.BuildErrorEventArgs e)
         {
             errorsCount++;
-            this.AddNode(e.Message);
+            this.AddNode(String.Format("MSBUILD : error {0} : {1}", e.Code, e.Message)); 
         }
 
         private void eventSource_WarningRaised(object sender, Microsoft.Build.Framework.BuildWarningEventArgs e)
         {
             warningsCount++;
-            this.AddNode(e.Message);
+            this.AddNode(String.Format("MSBUILD : warning {0} : {1}", e.Code, e.Message));
         }
 
         private void eventSource_CustomEventRaised(object sender, Microsoft.Build.Framework.CustomBuildEventArgs e)
@@ -151,10 +149,13 @@ namespace XRealEngine.Framework.Loggers
 
         private void eventSource_TargetStarted(object sender, Microsoft.Build.Framework.TargetStartedEventArgs e)
         {
-            if (e.TargetName == "Compile")
+            if (e.TargetName == "CoreCompile")
+            {
+                this.AddNode(e.Message);
                 needToLog = true;
+            }
             else
-                needToLog = true;
+                needToLog = false;
         }
 
         private void eventSource_TargetFinished(object sender, Microsoft.Build.Framework.TargetFinishedEventArgs e)
@@ -181,13 +182,14 @@ namespace XRealEngine.Framework.Loggers
         {
             errorsCount = 0;
             warningsCount = 0;
-            this.AddNode(e.Message);
+            this.AddNode(String.Format("{0} {1}", e.Message, e.Timestamp.ToString()));
         }
 
         private void eventSource_BuildFinished(object sender, Microsoft.Build.Framework.BuildFinishedEventArgs e)
         {
             this.AddNode(e.Message);
-            this.AddNode(errorsCount.ToString() + " errors, " + warningsCount.ToString() + " warnings.");
+            this.AddNode(String.Format("{0} Error(s)", errorsCount.ToString()));
+            this.AddNode(String.Format("{0} Warning(s)", warningsCount.ToString()));
         }
 
        

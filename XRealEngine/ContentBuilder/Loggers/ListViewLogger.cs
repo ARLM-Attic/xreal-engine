@@ -82,14 +82,15 @@ namespace XRealEngine.Framework.Loggers
             eventSource.TargetFinished += new TargetFinishedEventHandler(eventSource_TargetFinished);
             eventSource.TargetStarted += new TargetStartedEventHandler(eventSource_TargetStarted);
             eventSource.MessageRaised += new BuildMessageEventHandler(eventSource_MessageRaised);
-            /*eventSource.AnyEventRaised += new AnyEventHandler(eventSource_AnyEventRaised);
+
+            /*
+            eventSource.AnyEventRaised += new AnyEventHandler(eventSource_AnyEventRaised);
             eventSource.CustomEventRaised += new CustomBuildEventHandler(eventSource_CustomEventRaised);
-            
             eventSource.ProjectFinished += new ProjectFinishedEventHandler(eventSource_ProjectFinished);
             eventSource.ProjectStarted += new ProjectStartedEventHandler(eventSource_ProjectStarted);
-            
             eventSource.TaskFinished += new TaskFinishedEventHandler(eventSource_TaskFinished);
-            eventSource.TaskStarted += new TaskStartedEventHandler(eventSource_TaskStarted);*/
+            eventSource.TaskStarted += new TaskStartedEventHandler(eventSource_TaskStarted);
+             */
         }
 
         #endregion
@@ -188,8 +189,8 @@ namespace XRealEngine.Framework.Loggers
         private void eventSource_BuildFinished(object sender, Microsoft.Build.Framework.BuildFinishedEventArgs e)
         {
             this.AddNode(e.Message);
-            this.AddNode(String.Format("{0} Error(s)", errorsCount.ToString()));
-            this.AddNode(String.Format("{0} Warning(s)", warningsCount.ToString()));
+            this.AddNode(String.Format("      {0} Error(s)", errorsCount.ToString()));
+            this.AddNode(String.Format("      {0} Warning(s)", warningsCount.ToString()));
         }
 
        

@@ -11,10 +11,6 @@ namespace XRealEngine.Framework.Sprites
     //////////////////////////////////////////////////////////////////////////////////////////////////// 
     public class SpriteDefinition
     {
-        internal delegate void NameChangedEventHandler(object sender, NameChangedEventArgs e);
-
-        internal event NameChangedEventHandler OnNameChanged;
-
         #region Fields
 
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -45,13 +41,7 @@ namespace XRealEngine.Framework.Sprites
             }
             internal set 
             {
-                if (name != value)
-                {
-                    string oldName = name;
-                    name = value;
-                    NameChangedEventArgs e = new NameChangedEventArgs(oldName, name);
-                    OnNameChanged(this, e);
-                }
+                name = value;
             }
         }
 

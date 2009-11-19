@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,7 +11,7 @@ namespace XRealEngine.Framework.Sprites
     /// This class manage a collection of sprites
     /// </summary>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public class SpritesSheet:ISpritesSheet
+    public class SpritesSheet: ISpritesSheet
     {
         #region Fields
 
@@ -21,12 +22,6 @@ namespace XRealEngine.Framework.Sprites
         private List<SpriteDefinition> spritesList;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>Dictionary that holds the sprites definitions contained in the SpritesSheet</summary>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializerIgnore]
-        private Dictionary<String, SpriteDefinition> spritesDictionnary;
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Texture that holds the different sprites graphics</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         [ContentSerializerIgnore]
@@ -35,6 +30,7 @@ namespace XRealEngine.Framework.Sprites
         [ContentSerializer]
         string textureAssetName;
 
+       
         #endregion
 
         #region Properties
@@ -52,6 +48,12 @@ namespace XRealEngine.Framework.Sprites
             }
         }
 
+        [ContentSerializerIgnore]
+        public string TextureAssetName
+        {
+            get { return textureAssetName; }
+        }
+
         #endregion
 
         #region Constructor
@@ -62,7 +64,6 @@ namespace XRealEngine.Framework.Sprites
         public SpritesSheet()
         {
             spritesList = new List<SpriteDefinition>();
-            spritesDictionnary = new Dictionary<string, SpriteDefinition>();
         }
 
         #endregion
@@ -76,17 +77,7 @@ namespace XRealEngine.Framework.Sprites
         public void AddSpriteDefinition(SpriteDefinition sprite)
         {
             if (String.IsNullOrEmpty(sprite.Name)) sprite.Name = String.Format("Sprite_{0:D2}", spritesList.Count);
-
-            sprite.OnNameChanged += new SpriteDefinition.NameChangedEventHandler(sprite_OnNameChanged);
-
             spritesList.Add(sprite);
-            spritesDictionnary.Add(sprite.Name, sprite);
-        }
-
-        private void sprite_OnNameChanged(object sender, NameChangedEventArgs e)
-        {
-            spritesDictionnary.Remove(e.OldName);
-            spritesDictionnary.Add(e.NewName, (SpriteDefinition)sender);
         }
 
         #endregion
@@ -104,7 +95,11 @@ namespace XRealEngine.Framework.Sprites
         {
             get
             {
-                return spritesDictionnary[spriteName];
+                for (int i = 0; i < spritesList.Count; i++)
+                {
+                    if (spritesList[i].Name == spriteName) return spritesList[i];
+                }
+                return null;
             }
         }
 
@@ -115,8 +110,6 @@ namespace XRealEngine.Framework.Sprites
                 return spritesList[index];
             }
         }
-    
-
 
         #endregion
     }

@@ -66,6 +66,7 @@ namespace Editor
         private void backgroundBuilder_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             this.projectExplorer.RefreshTreeview();
+            MessageBox.Show(this.projectExplorer.ContentPath);
             this.statusLabel.Text = "Ready";
         }
 
@@ -80,6 +81,15 @@ namespace Editor
                 case 1:
                     this.statusLabel.Text = String.Format("Building {0} ...", this.projectExplorer.ProjectFullPath);
                     this.statusStrip.Refresh();
+                    break;
+            }
+        }
+
+        private void projectExplorer_AssetsListDoubleClick(object sender, Editor.Controls.AssetsListEventArg e)
+        {
+            switch (e.Asset.Importer)
+            {
+                case "":
                     break;
             }
         }

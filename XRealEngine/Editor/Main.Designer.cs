@@ -95,7 +95,7 @@
             // 
             this.statusLabel.AutoSize = false;
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(627, 17);
+            this.statusLabel.Size = new System.Drawing.Size(658, 17);
             this.statusLabel.Spring = true;
             this.statusLabel.Text = "Ready";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -203,6 +203,7 @@
             this.projectExplorer.ProjectFullPath = null;
             this.projectExplorer.Size = new System.Drawing.Size(180, 325);
             this.projectExplorer.TabIndex = 0;
+            this.projectExplorer.AssetsListDoubleClick += new Editor.Controls.ContentProjectControl.AssetsListDoubleClickEventHandler(this.projectExplorer_AssetsListDoubleClick);
             // 
             // backgroundBuilder
             // 

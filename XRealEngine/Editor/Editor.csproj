@@ -104,6 +104,7 @@
     <Compile Include="Controls\ContentProjectControl.Designer.cs">
       <DependentUpon>ContentProjectControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ContentProjectControlEvents.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

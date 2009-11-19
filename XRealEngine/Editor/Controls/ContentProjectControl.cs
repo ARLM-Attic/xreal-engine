@@ -7,6 +7,8 @@ using System;
 
 namespace Editor.Controls
 {
+    
+
     public partial class ContentProjectControl : UserControl
     {
         private const string COMPILE_ITEM = "Compile";
@@ -18,6 +20,14 @@ namespace Editor.Controls
         string projectFullPath;
         Dictionary<string, ContentFile> contentFilesDictionary;
         ILogger logger;
+
+        // Declare the delegate (if using non-generic pattern).
+        public delegate void AssetsListDoubleClickEventHandler(object sender, AssetsListEventArg e);
+
+        // Declare the event.
+        public event AssetsListDoubleClickEventHandler AssetsListDoubleClick;
+
+
 
         public ILogger Logger
         {
@@ -85,12 +95,25 @@ namespace Editor.Controls
 
         public void RefreshTreeview()
         {
-            treeView1.Nodes.Clear();
+            assetsTreeView.Nodes.Clear();
             foreach (ContentFile file in contentFilesDictionary.Values)
             {
                 TreeNode node = new TreeNode(file.AssetName);
-                treeView1.Nodes.Add(node);
+                assetsTreeView.Nodes.Add(node);
             }
         }
+
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            string assetName = assetsTreeView.SelectedNode.Text;
+            AssetsListEventArg assetArg = new AssetsListEventArg(GetAsset(assetName));
+            this.AssetsListDoubleClick(this, assetArg);
+        }
+
+        public ContentFile GetAsset(string assetName)
+        {
+            return contentFilesDictionary[assetName];
+        }
+
     }
 }

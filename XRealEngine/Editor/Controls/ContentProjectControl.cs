@@ -4,6 +4,9 @@ using Microsoft.Build.BuildEngine;
 using XRealEngine.Framework;
 using Microsoft.Build.Framework;
 using System;
+using System.IO;
+using Editor.Forms;
+using XRealEngine.Framework.Sprites;
 
 namespace Editor.Controls
 {
@@ -26,8 +29,6 @@ namespace Editor.Controls
 
         // Declare the event.
         public event AssetsListDoubleClickEventHandler AssetsListDoubleClick;
-
-
 
         public ILogger Logger
         {
@@ -56,6 +57,7 @@ namespace Editor.Controls
         {
             contentProject = new Project();
             contentProject.Load(projectFullPath);
+            contentProject.SetProperty("OutputPath", String.Format(@"{0}\bin\$(Platform)\$(Configuration)", Path.GetDirectoryName(projectFullPath)));
             contentFilesDictionary.Clear();
 
             foreach (BuildItemGroup group in contentProject.ItemGroups)
@@ -99,6 +101,12 @@ namespace Editor.Controls
             foreach (ContentFile file in contentFilesDictionary.Values)
             {
                 TreeNode node = new TreeNode(file.AssetName);
+                switch (Path.GetExtension(file.Filename).ToLower())
+                {
+                    case ".png":
+                        node.ImageKey = "ASSET_IMAGE";
+                        break;
+                }
                 assetsTreeView.Nodes.Add(node);
             }
         }
@@ -113,6 +121,31 @@ namespace Editor.Controls
         public ContentFile GetAsset(string assetName)
         {
             return contentFilesDictionary[assetName];
+        }
+
+        private void addNewAssetButton_Click(object sender, EventArgs e)
+        {
+            AddNewAsset form = new AddNewAsset();
+            DialogResult result = form.ShowDialog(this);
+            object returnedObject;
+
+
+            if (result == DialogResult.OK)
+            {
+                switch (form.AssetType)
+                {
+                    case SpritesSheet.AssetTypeName:
+                        contentFilesDictionary.Add
+                        (
+                            form.AssetName,
+                            new ContentFile(String.Format("{0}.{1}", form.AssetName, SpritesSheet.Extension), form.AssetName, SpritesSheet.ImporterName, SpritesSheet.ProcessorName)
+                        );
+                        break;
+                }
+
+                this.RefreshTreeview();
+
+            }
         }
 
     }

@@ -41,8 +41,8 @@
             this.columnDescription = new System.Windows.Forms.ColumnHeader();
             this.tabLeftPanel = new System.Windows.Forms.TabControl();
             this.tabProjectExplorer = new System.Windows.Forms.TabPage();
-            this.projectExplorer = new Editor.Controls.ContentProjectControl();
             this.backgroundBuilder = new System.ComponentModel.BackgroundWorker();
+            this.projectExplorer = new Editor.Controls.ContentProjectControl();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -137,7 +137,9 @@
             this.tabBottom.Controls.Add(this.tabLog);
             this.tabBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabBottom.Location = new System.Drawing.Point(0, 0);
+            this.tabBottom.Margin = new System.Windows.Forms.Padding(0);
             this.tabBottom.Name = "tabBottom";
+            this.tabBottom.Padding = new System.Drawing.Point(0, 0);
             this.tabBottom.SelectedIndex = 0;
             this.tabBottom.Size = new System.Drawing.Size(481, 187);
             this.tabBottom.TabIndex = 0;
@@ -146,8 +148,8 @@
             // 
             this.tabLog.Controls.Add(this.listViewLog);
             this.tabLog.Location = new System.Drawing.Point(4, 4);
+            this.tabLog.Margin = new System.Windows.Forms.Padding(0);
             this.tabLog.Name = "tabLog";
-            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
             this.tabLog.Size = new System.Drawing.Size(473, 161);
             this.tabLog.TabIndex = 0;
             this.tabLog.Text = "Log";
@@ -161,9 +163,10 @@
             this.listViewLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewLog.GridLines = true;
             this.listViewLog.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listViewLog.Location = new System.Drawing.Point(3, 3);
+            this.listViewLog.Location = new System.Drawing.Point(0, 0);
+            this.listViewLog.Margin = new System.Windows.Forms.Padding(0);
             this.listViewLog.Name = "listViewLog";
-            this.listViewLog.Size = new System.Drawing.Size(467, 155);
+            this.listViewLog.Size = new System.Drawing.Size(473, 161);
             this.listViewLog.TabIndex = 0;
             this.listViewLog.UseCompatibleStateImageBehavior = false;
             this.listViewLog.View = System.Windows.Forms.View.Details;
@@ -179,7 +182,9 @@
             this.tabLeftPanel.Controls.Add(this.tabProjectExplorer);
             this.tabLeftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabLeftPanel.Location = new System.Drawing.Point(0, 0);
+            this.tabLeftPanel.Margin = new System.Windows.Forms.Padding(0);
             this.tabLeftPanel.Name = "tabLeftPanel";
+            this.tabLeftPanel.Padding = new System.Drawing.Point(0, 0);
             this.tabLeftPanel.SelectedIndex = 0;
             this.tabLeftPanel.Size = new System.Drawing.Size(188, 351);
             this.tabLeftPanel.TabIndex = 0;
@@ -188,28 +193,30 @@
             // 
             this.tabProjectExplorer.Controls.Add(this.projectExplorer);
             this.tabProjectExplorer.Location = new System.Drawing.Point(4, 4);
+            this.tabProjectExplorer.Margin = new System.Windows.Forms.Padding(0);
             this.tabProjectExplorer.Name = "tabProjectExplorer";
             this.tabProjectExplorer.Size = new System.Drawing.Size(180, 325);
             this.tabProjectExplorer.TabIndex = 0;
             this.tabProjectExplorer.Text = "Project Explorer";
             this.tabProjectExplorer.UseVisualStyleBackColor = true;
             // 
-            // projectExplorer
-            // 
-            this.projectExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.projectExplorer.Location = new System.Drawing.Point(0, 0);
-            this.projectExplorer.Logger = null;
-            this.projectExplorer.Name = "projectExplorer";
-            this.projectExplorer.ProjectFullPath = null;
-            this.projectExplorer.Size = new System.Drawing.Size(180, 325);
-            this.projectExplorer.TabIndex = 0;
-            this.projectExplorer.AssetsListDoubleClick += new Editor.Controls.ContentProjectControl.AssetsListDoubleClickEventHandler(this.projectExplorer_AssetsListDoubleClick);
-            // 
             // backgroundBuilder
             // 
             this.backgroundBuilder.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundBuilder_DoWork);
             this.backgroundBuilder.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundBuilder_RunWorkerCompleted);
             this.backgroundBuilder.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundBuilder_ProgressChanged);
+            // 
+            // projectExplorer
+            // 
+            this.projectExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.projectExplorer.Location = new System.Drawing.Point(0, 0);
+            this.projectExplorer.Logger = null;
+            this.projectExplorer.Margin = new System.Windows.Forms.Padding(0);
+            this.projectExplorer.Name = "projectExplorer";
+            this.projectExplorer.ProjectFullPath = null;
+            this.projectExplorer.Size = new System.Drawing.Size(180, 325);
+            this.projectExplorer.TabIndex = 0;
+            this.projectExplorer.AssetsListDoubleClick += new Editor.Controls.ContentProjectControl.AssetsListDoubleClickEventHandler(this.projectExplorer_AssetsListDoubleClick);
             // 
             // Main
             // 

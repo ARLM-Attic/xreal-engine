@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -13,6 +12,11 @@ namespace XRealEngine.Framework.Sprites
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     public class SpritesSheet: ISpritesSheet
     {
+        public const string AssetTypeName = "SPRITES_SHEET";
+        public const string ImporterName  = "SPRITES_SHEET";
+        public const string ProcessorName = "SPRITES_SHEET";
+        public const string Extension     = "xsp";
+
         #region Fields
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////

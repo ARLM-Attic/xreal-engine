@@ -48,6 +48,12 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XRealEngine.ContentPipeline\XRealEngine.ContentPipeline.csproj">
+      <Project>{64AE630F-154B-4722-B2FA-0219BF92176D}</Project>
+      <Name>XRealEngine.ContentPipeline</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

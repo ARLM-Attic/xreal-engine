@@ -7,16 +7,11 @@ namespace XRealEngine.Framework.Sprites
 {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>
-    /// This class manage a collection of sprites
+    /// This class manage a collection of sprites definitions
     /// </summary>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public class SpritesSheet: ISpritesSheet
+    public class SpritesSheet: ISpritesSheet, ICollection<SpriteDefinition>
     {
-        public const string AssetTypeName = "SPRITES_SHEET";
-        public const string ImporterName  = "SPRITES_SHEET";
-        public const string ProcessorName = "SPRITES_SHEET";
-        public const string Extension     = "xsp";
-
         #region Fields
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,13 +23,9 @@ namespace XRealEngine.Framework.Sprites
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Texture that holds the different sprites graphics</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializerIgnore]
+        [ContentSerializer]
         Texture2D texture;
 
-        [ContentSerializer]
-        string textureAssetName;
-
-       
         #endregion
 
         #region Properties
@@ -46,16 +37,7 @@ namespace XRealEngine.Framework.Sprites
         public Texture2D Texture
         {
             get { return texture; }
-            set 
-            { texture = value; 
-              textureAssetName = value.Name;
-            }
-        }
-
-        [ContentSerializerIgnore]
-        public string TextureAssetName
-        {
-            get { return textureAssetName; }
+            set { texture = value;}
         }
 
         #endregion
@@ -68,20 +50,6 @@ namespace XRealEngine.Framework.Sprites
         public SpritesSheet()
         {
             spritesList = new List<SpriteDefinition>();
-        }
-
-        #endregion
-
-        #region Methods
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>Add a new sprite definition to the spritesheet</summary>
-        /// <param name="sprite">The new sprite definition to add</param>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void AddSpriteDefinition(SpriteDefinition sprite)
-        {
-            if (String.IsNullOrEmpty(sprite.Name)) sprite.Name = String.Format("Sprite_{0:D2}", spritesList.Count);
-            spritesList.Add(sprite);
         }
 
         #endregion
@@ -107,12 +75,124 @@ namespace XRealEngine.Framework.Sprites
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Get the desired sprite definition
+        /// </summary>
+        /// <param name="index">Index of the sprite to retreive</param>
+        /// <returns>The desired sprite definition</returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         public SpriteDefinition this[int index]
         {
             get
             {
                 return spritesList[index];
             }
+        }
+
+        #endregion
+
+        #region ICollection<SpriteDefinition> Members
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>Add a new sprite definition to the spritesheet</summary>
+        /// <param name="sprite">The new sprite definition to add</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void Add(SpriteDefinition sprite)
+        {
+            if (String.IsNullOrEmpty(sprite.Name)) sprite.Name = String.Format("Sprite_{0:D2}", spritesList.Count);
+            spritesList.Add(sprite);
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>Remove all sprites definitions from the spritesheet</summary>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void Clear()
+        {
+            spritesList.Clear();
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>Check if the sprites sheet contains de desired sprite</summary>
+        /// <param name="sprite">The new sprite definition to check</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public bool Contains(SpriteDefinition sprite)
+        {
+            return spritesList.Contains(sprite);
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Copy the sprites definition to an array
+        /// </summary>
+        /// <param name="array">The array to copy to</param>
+        /// <param name="arrayIndex">The first index to begin the copy</param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void CopyTo(SpriteDefinition[] array, int arrayIndex)
+        {
+            spritesList.CopyTo(array, arrayIndex);
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>Return the count of sprites in the sprites sheet</summary>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        [ContentSerializerIgnore]
+        public int Count
+        {
+            get { return spritesList.Count; }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Gets the read only state of the sprites sheet
+        /// </summary>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        [ContentSerializerIgnore]
+        public bool IsReadOnly
+        {
+            get { return false; }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Remove a sprite from the sprites sheet
+        /// </summary>
+        /// <param name="sprite">The sprite to remove</param>
+        /// <returns>true is the operation is succesful</returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public bool Remove(SpriteDefinition sprite)
+        {
+            return spritesList.Remove(sprite);
+        }
+
+        #endregion
+
+        #region IEnumerable<SpriteDefinition> Members
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Return an enumerator that iterate though the collection of sprites
+        /// </summary>
+        /// <returns>An enumerator of the collection</returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public IEnumerator<SpriteDefinition> GetEnumerator()
+        {
+            return spritesList.GetEnumerator();
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Return an enumerator that iterate though the collection of sprites
+        /// </summary>
+        /// <returns>An enumerator of the collection</returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return spritesList.GetEnumerator();
         }
 
         #endregion

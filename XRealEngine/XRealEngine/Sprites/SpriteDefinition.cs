@@ -119,6 +119,13 @@ namespace XRealEngine.Framework.Sprites
 
         #region Contructor
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>
+        /// Create a new sprite definition
+        /// </summary>
+        /// <param name="name">The name of the sprite definition</param>
+        /// <param name="rect">The position and dimensions of the sprite on a sprites sheet</param>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
         public SpriteDefinition(string name, Rectangle rect)
         {
             this.name = name;

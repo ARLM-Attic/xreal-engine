@@ -11,9 +11,18 @@ using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
 namespace XRealEngine.ContentPipeline
 {
     [ContentSerializerRuntimeType("XRealEngine.Framework.Sprites.SpritesSheet, XRealEngine")]
-    public class SpriteSheetContent
+    public class SpritesSheetContent
     {
+        [ContentSerializer(ElementName = "SpritesList", CollectionItemName = "Sprite")]
         public List<SpriteDefinition> SpritesList;
-        public Object Texture;
+        [ContentSerializer(Optional = true)]
+        public TextureContent Texture;
+        [ContentSerializer(Optional = true)]
+        public string TexturePath;
+
+        public SpritesSheetContent()
+        {
+            SpritesList = new List<SpriteDefinition>();
+        }
     }
 }

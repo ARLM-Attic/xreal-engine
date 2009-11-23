@@ -42,11 +42,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="maps1.png">
+    <None Include="maps1.png">
       <Name>maps1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XRealEngine.ContentPipeline\XRealEngine.ContentPipeline.csproj">
@@ -59,10 +59,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="test2.xml">
-      <Name>test2</Name>
+    <Compile Include="test1.xml">
+      <Name>test1</Name>
       <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
+      <Processor>SpritesSheetContentProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

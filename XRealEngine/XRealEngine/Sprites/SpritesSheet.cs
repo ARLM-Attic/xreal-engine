@@ -17,13 +17,13 @@ namespace XRealEngine.Framework.Sprites
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>List that holds the sprites definitions contained in the SpritesSheet</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializer(ElementName="SpritesList", CollectionItemName="Sprite")]
+        [ContentSerializer(ElementName = "SpritesList", CollectionItemName = "Sprite")]
         private List<SpriteDefinition> spritesList;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Texture that holds the different sprites graphics</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializerIgnore]
+        [ContentSerializer(ElementName = "Texture")]
         Texture2D texture;
 
         #endregion
@@ -33,7 +33,7 @@ namespace XRealEngine.Framework.Sprites
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Texture that holds the different sprites graphics</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializer]
+        [ContentSerializerIgnore]
         public Texture2D Texture
         {
             get { return texture; }
@@ -138,7 +138,6 @@ namespace XRealEngine.Framework.Sprites
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Return the count of sprites in the sprites sheet</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializerIgnore]
         public int Count
         {
             get { return spritesList.Count; }
@@ -149,7 +148,6 @@ namespace XRealEngine.Framework.Sprites
         /// Gets the read only state of the sprites sheet
         /// </summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializerIgnore]
         public bool IsReadOnly
         {
             get { return false; }

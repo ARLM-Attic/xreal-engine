@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using XRealEngine.Framework.Sprites;
 using XRealEngine.ContentPipeline;
+using Microsoft.Xna.Framework.Content.Pipeline;
 
 namespace ANotSoDeadPirate
 {
@@ -36,7 +37,8 @@ namespace ANotSoDeadPirate
         /// </summary>
         protected override void Initialize()
         {
-            CreateSpriteSheet();
+            //CreateSpriteSheet();
+            //LoadSpriteSheetContent();
             LoadSpriteSheet();
 
             base.Initialize();
@@ -94,17 +96,17 @@ namespace ANotSoDeadPirate
 
         private void CreateSpriteSheet()
         {
-            SpritesSheet sheet = new SpritesSheet();
-            sheet.Add(new SpriteDefinition("sprite_01", new Rectangle(10,10,100,100)));
-            sheet.Add(new SpriteDefinition("sprite_01", new Rectangle(20, 10, 100, 100)));
-            sheet.Texture = Content.Load<Texture2D>("maps1");
-            
-            Serializer.Serialize<SpritesSheet>(@"C:\Users\LEPECQMI\Documents\Visual Studio 2008\Projects\XRealEngine\ANotSoDeadPirate\Content\test2.xml", sheet);
+            SpritesSheetContent sheet = new SpritesSheetContent();
+            sheet.SpritesList.Add(new SpriteDefinition("sprite_01", new Rectangle(10,10,100,100)));
+            sheet.SpritesList.Add(new SpriteDefinition("sprite_02", new Rectangle(20, 10, 100, 100)));;
+            sheet.TexturePath = "maps1.png";
+
+            Serializer.Serialize<SpritesSheetContent>(@"D:\Users\Michaël\Documents\Visual Studio 2008\Projects\XRealEngine\ANotSoDeadPirate\Content\test1.xml", sheet);
         }
 
         private void LoadSpriteSheet()
         {
-            SpritesSheet sheet = Content.Load<SpritesSheet>("test2");
+            SpritesSheet sheet = Content.Load<SpritesSheet>("test1");
         }
     }
 }

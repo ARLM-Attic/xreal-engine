@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -10,6 +9,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using XRealEngine.Framework.Sprites;
+using XRealEngine.ContentPipeline;
 
 namespace ANotSoDeadPirate
 {
@@ -35,7 +36,8 @@ namespace ANotSoDeadPirate
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            CreateSpriteSheet();
+            LoadSpriteSheet();
 
             base.Initialize();
         }
@@ -88,6 +90,21 @@ namespace ANotSoDeadPirate
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        private void CreateSpriteSheet()
+        {
+            SpritesSheet sheet = new SpritesSheet();
+            sheet.Add(new SpriteDefinition("sprite_01", new Rectangle(10,10,100,100)));
+            sheet.Add(new SpriteDefinition("sprite_01", new Rectangle(20, 10, 100, 100)));
+            sheet.Texture = Content.Load<Texture2D>("maps1");
+            
+            Serializer.Serialize<SpritesSheet>(@"C:\Users\LEPECQMI\Documents\Visual Studio 2008\Projects\XRealEngine\ANotSoDeadPirate\Content\test2.xml", sheet);
+        }
+
+        private void LoadSpriteSheet()
+        {
+            SpritesSheet sheet = Content.Load<SpritesSheet>("test2");
         }
     }
 }

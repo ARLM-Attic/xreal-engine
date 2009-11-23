@@ -17,13 +17,13 @@ namespace XRealEngine.Framework.Sprites
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>List that holds the sprites definitions contained in the SpritesSheet</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializer]
+        [ContentSerializer(ElementName="SpritesList", CollectionItemName="Sprite")]
         private List<SpriteDefinition> spritesList;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Texture that holds the different sprites graphics</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializer]
+        [ContentSerializerIgnore]
         Texture2D texture;
 
         #endregion
@@ -33,7 +33,7 @@ namespace XRealEngine.Framework.Sprites
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>Texture that holds the different sprites graphics</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        [ContentSerializerIgnore]
+        [ContentSerializer]
         public Texture2D Texture
         {
             get { return texture; }
@@ -62,7 +62,8 @@ namespace XRealEngine.Framework.Sprites
         /// </summary>
         /// <param name="spriteName">the name of the sprite definition to retrieve</param>
         /// <returns>The desired sprite definition</returns>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////     
+        [ContentSerializerIgnore]
         public SpriteDefinition this[string spriteName]
         {
             get
@@ -82,6 +83,7 @@ namespace XRealEngine.Framework.Sprites
         /// <param name="index">Index of the sprite to retreive</param>
         /// <returns>The desired sprite definition</returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        [ContentSerializerIgnore]
         public SpriteDefinition this[int index]
         {
             get

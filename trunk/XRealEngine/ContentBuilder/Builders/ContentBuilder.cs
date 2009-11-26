@@ -10,7 +10,7 @@ namespace XRealEngine.Windows.Builders
 {
     public enum XnaVersion 
     {
-        XNA_2_0,
+        Xna20,
         XNA_3_0,
         XNA_3_1
     }
@@ -150,7 +150,7 @@ namespace XRealEngine.Windows.Builders
         {
             switch (version)
             {
-                case XnaVersion.XNA_2_0:
+                case XnaVersion.Xna20:
                     return "2.0";
                 case XnaVersion.XNA_3_0:
                     return "3.0";

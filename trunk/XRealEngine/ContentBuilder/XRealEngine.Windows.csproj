@@ -87,17 +87,14 @@
     <Compile Include="Builders\ContentBuilder.cs" />
     <Compile Include="Builders\ContentFile.cs" />
     <Compile Include="Builders\ContentFileManager.cs" />
-    <Compile Include="GraphicsDeviceControl.cs">
+    <Compile Include="Winforms\GraphicsDeviceControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GraphicsDeviceService.cs" />
     <Compile Include="Loggers\ListViewLogger.cs" />
     <Compile Include="Loggers\TextBoxLogger.cs" />
-    <Compile Include="ActiveSelectionChangedEventArgs.cs" />
     <Compile Include="PrimitiveBatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RectangularSelection.cs" />
-    <Compile Include="SelectionsManager.cs" />
     <Compile Include="ServiceContainer.cs" />
   </ItemGroup>
   <ItemGroup>

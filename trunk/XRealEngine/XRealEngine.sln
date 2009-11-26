@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentBuilder", "ContentBuilder\ContentBuilder.csproj", "{1928CEBE-E9E0-4073-A625-43AB1DABD391}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRealEngine.Windows", "ContentBuilder\XRealEngine.Windows.csproj", "{1928CEBE-E9E0-4073-A625-43AB1DABD391}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{75EED07D-1D21-4013-9E19-1F8615561A89}"
 EndProject

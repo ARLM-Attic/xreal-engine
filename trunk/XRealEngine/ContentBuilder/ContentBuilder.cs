@@ -79,6 +79,11 @@ namespace XRealEngine.Framework
             Dispose(false);
         }
 
+        public void AddAssembly(string filename)
+        {
+            assemblyManager.AddAssembly(filename);
+        }
+
         public void AddFileToBuild(ContentFile file)
         {
             contentFileManager.AddFile(file);

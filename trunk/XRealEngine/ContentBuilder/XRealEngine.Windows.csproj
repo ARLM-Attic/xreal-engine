@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XRealEngine.Framework</RootNamespace>
+    <RootNamespace>XRealEngine.Windows</RootNamespace>
     <AssemblyName>ContentBuilder</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <XnaFrameworkVersion>v3.1</XnaFrameworkVersion>
@@ -83,10 +83,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssembyManager.cs" />
-    <Compile Include="ContentBuilder.cs" />
-    <Compile Include="ContentFile.cs" />
-    <Compile Include="ContentFileManager.cs" />
+    <Compile Include="Builders\AssembyManager.cs" />
+    <Compile Include="Builders\ContentBuilder.cs" />
+    <Compile Include="Builders\ContentFile.cs" />
+    <Compile Include="Builders\ContentFileManager.cs" />
     <Compile Include="GraphicsDeviceControl.cs">
       <SubType>Component</SubType>
     </Compile>

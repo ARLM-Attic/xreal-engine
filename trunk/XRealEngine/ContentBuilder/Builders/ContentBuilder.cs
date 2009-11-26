@@ -6,7 +6,7 @@ using Microsoft.Build.BuildEngine;
 using Microsoft.Build.Framework;
 using System.Runtime.InteropServices;
 
-namespace XRealEngine.Framework
+namespace XRealEngine.Windows.Builders
 {
     public enum XnaVersion 
     {

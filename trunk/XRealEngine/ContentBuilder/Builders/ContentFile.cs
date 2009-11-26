@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XRealEngine.Framework
+namespace XRealEngine.Windows.Builders
 {
     public struct ContentFile
     {

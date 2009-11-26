@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace XRealEngine.Framework
+namespace XRealEngine.Windows.Builders
 {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>

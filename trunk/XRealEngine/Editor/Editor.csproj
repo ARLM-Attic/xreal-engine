@@ -202,7 +202,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ContentBuilder\ContentBuilder.csproj">
+    <ProjectReference Include="..\ContentBuilder\XRealEngine.Windows.csproj">
       <Project>{1928CEBE-E9E0-4073-A625-43AB1DABD391}</Project>
       <Name>ContentBuilder</Name>
     </ProjectReference>

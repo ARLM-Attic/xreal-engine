@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using XRealEngine.Framework;
+using XRealEngine.Windows.Builders;
 
 namespace Editor.Controls
 {

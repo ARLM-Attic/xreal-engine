@@ -110,10 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISpritesSheet.cs" />
+    <Compile Include="SpritesSheetContent.cs" />
     <Compile Include="SpritesSheetContentProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serializer.cs" />
-    <Compile Include="SpritesSheetContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XRealEngine\XRealEngine.csproj">

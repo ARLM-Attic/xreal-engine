@@ -24,7 +24,7 @@ namespace XRealEngine.Windows
     // users, in a similar way to SpriteBatch. PrimitiveBatch can render lines, points,
     // and triangles to the screen. In this sample, it is used to draw a spacewars
     // retro scene.
-    internal class PrimitiveBatch : IDisposable
+    public class PrimitiveBatch : IDisposable
     {
         #region Constants and Fields
 
@@ -183,6 +183,31 @@ namespace XRealEngine.Windows
             vertices[positionInBuffer].Color = color;
            
             positionInBuffer++;
+        }
+
+        public void AddLine(Vector2 vertex1, Vector2 vertex2, Color color)
+        {
+            if (primitiveType == PrimitiveType.LineList)
+            {
+                this.AddVertex(vertex1, color);
+                this.AddVertex(vertex2, color);
+            }
+        }
+
+        public void AddRect(Rectangle rect, Color color)
+        {
+            if (primitiveType == PrimitiveType.LineList)
+            {
+                Vector2 vertex1 = new Vector2(rect.X, rect.Y);
+                Vector2 vertex2 = new Vector2(rect.Right, rect.Y);
+                Vector2 vertex3 = new Vector2(rect.Right, rect.Bottom);
+                Vector2 vertex4 = new Vector2(rect.X, rect.Bottom);
+
+                this.AddLine(vertex1, vertex2, color);
+                this.AddLine(vertex2, vertex3, color);
+                this.AddLine(vertex3, vertex4, color);
+                this.AddLine(vertex4, vertex1, color);
+            }
         }
 
         // End is called once all the primitives have been drawn using AddVertex.

@@ -39,7 +39,19 @@ namespace XRealEngine.Windows.Builders
         public ILogger Logger
         {
             get { return logger; }
-            private set { logger = value; }
+            private set
+            {
+                if (value == null)
+                {
+                    logger = new FileLogger();
+                    logger.Parameters = @"logfile=C:\temp\xrealengine.build.log";
+                }
+                else
+                {
+                    logger = value;
+                }
+
+            }
         }
 
         private string OutputPath
@@ -73,11 +85,7 @@ namespace XRealEngine.Windows.Builders
             assemblyManager.AddAssembly(String.Format("Microsoft.Xna.Framework.Content.Pipeline.TextureImporter, Version={0}.0.0, PublicKeyToken=6d5c3888ef60e27d", GetXnaFrameworkVersion(version)));
             assemblyManager.AddAssembly(String.Format("Microsoft.Xna.Framework.Content.Pipeline.EffectImporter, Version={0}.0.0, PublicKeyToken=6d5c3888ef60e27d", GetXnaFrameworkVersion(version)));
 
-            if (logger == null)
-            {
-                logger = new FileLogger();
-                logger.Parameters = @"logfile=C:\temp\xrealengine.build.log";
-            }
+           
 
         }
 
@@ -118,9 +126,8 @@ namespace XRealEngine.Windows.Builders
             Engine msBuildEngine;
             Project msBuildProject;
 
-
             msBuildEngine = new Engine();
-            msBuildEngine.RegisterLogger(logger);
+            msBuildEngine.RegisterLogger(Logger);
             msBuildEngine.DefaultToolsVersion = "3.5";
 
             msBuildProject = new Project(msBuildEngine);

@@ -11,6 +11,6 @@
         <Rectangle>20 10 100 100</Rectangle>
       </Sprite>
     </SpritesList>
-    <TexturePath>maps1.png</TexturePath>
+    <TexturePath>C:\Users\LEPECQMI\Documents\Visual Studio 2008\Projects\XRealEngine\XRealEngine\ANotSoDeadPirate\Content\maps1.png</TexturePath>
   </Asset>
 </XnaContent>

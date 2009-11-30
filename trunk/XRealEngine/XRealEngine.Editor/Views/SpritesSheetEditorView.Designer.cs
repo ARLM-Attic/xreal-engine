@@ -29,20 +29,24 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Button button1;
-            XRealEngine.Editor.Components.SpritesSheetViewer spritesSheetViewer1;
+            this.spritesSheetViewer1 = new XRealEngine.Editor.Components.SpritesSheetViewer();
             this.label1 = new System.Windows.Forms.Label();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSpritesSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDialog = new System.Windows.Forms.OpenFileDialog();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             button1 = new System.Windows.Forms.Button();
-            spritesSheetViewer1 = new XRealEngine.Editor.Components.SpritesSheetViewer();
             this.menu.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(381, 401);
+            button1.Location = new System.Drawing.Point(48, 23);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(75, 23);
             button1.TabIndex = 0;
@@ -50,22 +54,24 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // spritesSheetViewer1
+            // 
+            this.spritesSheetViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spritesSheetViewer1.Location = new System.Drawing.Point(0, 0);
+            this.spritesSheetViewer1.Name = "spritesSheetViewer1";
+            this.spritesSheetViewer1.Size = new System.Drawing.Size(478, 502);
+            this.spritesSheetViewer1.SpritesSheet = null;
+            this.spritesSheetViewer1.TabIndex = 2;
+            this.spritesSheetViewer1.Text = "spritesSheetViewer1";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(55, 411);
+            this.label1.Location = new System.Drawing.Point(69, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
-            // 
-            // spritesSheetViewer1
-            // 
-            spritesSheetViewer1.Location = new System.Drawing.Point(12, 28);
-            spritesSheetViewer1.Name = "spritesSheetViewer1";
-            spritesSheetViewer1.Size = new System.Drawing.Size(466, 268);
-            spritesSheetViewer1.TabIndex = 2;
-            spritesSheetViewer1.Text = "spritesSheetViewer1";
             // 
             // menu
             // 
@@ -73,7 +79,7 @@
             this.fileToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(499, 24);
+            this.menu.Size = new System.Drawing.Size(703, 24);
             this.menu.TabIndex = 3;
             this.menu.Text = "menuStrip1";
             // 
@@ -97,20 +103,49 @@
             this.openDialog.Filter = "SpritesSheet File|*.xml";
             this.openDialog.Title = "Open a Sprites Sheet";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 526);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(703, 22);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.spritesSheetViewer1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(button1);
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Size = new System.Drawing.Size(703, 502);
+            this.splitContainer1.SplitterDistance = 478;
+            this.splitContainer1.TabIndex = 5;
+            // 
             // SpritesSheetEditorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 436);
-            this.Controls.Add(spritesSheetViewer1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(button1);
+            this.ClientSize = new System.Drawing.Size(703, 548);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
             this.Name = "SpritesSheetEditorView";
-            this.Text = "Form1";
+            this.Text = "Sprites Sheet Editor";
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +158,9 @@
         private System.Windows.Forms.ToolStripMenuItem openSpritesSheetToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openDialog;
+        private XRealEngine.Editor.Components.SpritesSheetViewer spritesSheetViewer1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

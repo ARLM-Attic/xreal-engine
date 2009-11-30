@@ -7,13 +7,13 @@ using XRealEngine.ContentPipeline;
 using XRealEngine.Framework.Sprites;
 using System.Windows.Forms;
 using XRealEngine.Windows.Builders;
+using Microsoft.Xna.Framework.Content;
 
 namespace XRealEngine.Editor.Presenters
 {
     class SpritesSheetEditorPresenter : Presenter<SpritesSheetEditorView>
     {
-        private SpritesSheetContent contentSheet;
-        private SpritesSheet sheet;
+        private string fileName;
 
         public SpritesSheetEditorPresenter(SpritesSheetEditorView view)
             : base(view)
@@ -32,7 +32,8 @@ namespace XRealEngine.Editor.Presenters
             if (result == DialogResult.OK)
             {
                 BuildAndLoadSpriteSheet(openDialog.FileName);
-                View.Message = openDialog.FileName;
+                View.Title = openDialog.FileName;
+                fileName = openDialog.FileName;
             }
         }
 
@@ -44,12 +45,13 @@ namespace XRealEngine.Editor.Presenters
         void BuildAndLoadSpriteSheet(string filename)
         {
             ContentBuilder builder = new ContentBuilder(XnaVersion.XNA_3_1, null);
-            builder.AddAssembly("XRealEngine.ContentPipeline");
-            builder.AddFileToBuild(filename, "content", "XmlImporter", "SpritesSheetProcessor");
+            builder.AddAssembly(String.Format("{0}\\{1}", Application.StartupPath, "XRealEngine.ContentPipeline.dll"));
+            builder.AddFileToBuild(filename, "sheet", "XmlImporter", "SpritesSheetContentProcessor");
             builder.BuildProject();
-        }
 
-        
+            ContentManager content = new ContentManager(View.Services, builder.ContentPath);
+            View.SpritesSheet = content.Load<SpritesSheet>("sheet");
+        }
 
         
     }

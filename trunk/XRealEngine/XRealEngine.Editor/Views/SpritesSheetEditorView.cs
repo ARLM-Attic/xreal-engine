@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using XRealEngine.Editor.Presenters;
 using Microsoft.Xna.Framework.Graphics;
+using XRealEngine.Framework.Sprites;
 
 namespace XRealEngine.Editor.Views
 {
@@ -27,6 +28,25 @@ namespace XRealEngine.Editor.Views
         public string Message
         {
             set { this.label1.Text = value; }
+        }
+
+        public string Title
+        {
+            set { this.Text = String.Format("Sprites Sheet Editor : {0}", value); }
+        }
+
+        public SpritesSheet SpritesSheet
+        {
+            get { return this.spritesSheetViewer1.SpritesSheet; }
+            set 
+            { 
+                this.spritesSheetViewer1.SpritesSheet = value;
+            }
+        }
+
+        public IServiceProvider Services
+        {
+            get { return this.spritesSheetViewer1.Services; }
         }
 
         private void button1_Click(object sender, EventArgs e)

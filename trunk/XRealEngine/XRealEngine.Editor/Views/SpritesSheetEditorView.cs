@@ -9,25 +9,22 @@ using System.Windows.Forms;
 using XRealEngine.Editor.Presenters;
 using Microsoft.Xna.Framework.Graphics;
 using XRealEngine.Framework.Sprites;
+using XRealEngine.Editor.Components;
 
 namespace XRealEngine.Editor.Views
 {
     public partial class SpritesSheetEditorView : Form, IView
     {
         private Presenter<SpritesSheetEditorView> presenter;
-        public event EventHandler ShowMessage;
         public event EventHandler LoadSpritesSheet;
+        public event XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler ChangeSelectedSprite;
+        public event XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler EndOperation;
 
         public SpritesSheetEditorView()
         {
             InitializeComponent();
 
             presenter = new SpritesSheetEditorPresenter(this);
-        }
-
-        public string Message
-        {
-            set { this.label1.Text = value; }
         }
 
         public string Title
@@ -44,19 +41,39 @@ namespace XRealEngine.Editor.Views
             }
         }
 
+        public SpriteDefinition SelectedSprite
+        {
+            get { return this.spritesSheetViewer1.SelectedSprite; }
+            set
+            {
+                this.spritesSheetViewer1.SelectedSprite = value;
+                this.propertyGrid1.SelectedObject = value;
+            }
+        }
+
+        public void RefreshOperation()
+        {
+            this.propertyGrid1.Refresh();
+        }
+
         public IServiceProvider Services
         {
             get { return this.spritesSheetViewer1.Services; }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ShowMessage(this, EventArgs.Empty);
-        }
-
         private void openSpritesSheetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadSpritesSheet(this, EventArgs.Empty);
+        }
+
+        private void spritesSheetViewer1_SelectedSpriteChanged(object sender, SpriteEventArgs e)
+        {
+            ChangeSelectedSprite(this, e);
+        }
+
+        private void spritesSheetViewer1_OperationComplete(object sender, SpriteEventArgs e)
+        {
+            EndOperation(this, e);
         }
         
     }

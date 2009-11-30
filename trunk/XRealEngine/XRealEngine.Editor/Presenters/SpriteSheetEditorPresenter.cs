@@ -8,6 +8,7 @@ using XRealEngine.Framework.Sprites;
 using System.Windows.Forms;
 using XRealEngine.Windows.Builders;
 using Microsoft.Xna.Framework.Content;
+using XRealEngine.Editor.Components;
 
 namespace XRealEngine.Editor.Presenters
 {
@@ -18,8 +19,19 @@ namespace XRealEngine.Editor.Presenters
         public SpritesSheetEditorPresenter(SpritesSheetEditorView view)
             : base(view)
         {
-            View.ShowMessage += new EventHandler(View_ShowMessage);
             View.LoadSpritesSheet += new EventHandler(View_LoadSpritesSheet);
+            View.ChangeSelectedSprite += new XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler(View_ChangeSelectedSprite);
+            View.EndOperation += new SpritesSheetViewer.SpriteEventHandler(View_EndOperation);
+        }
+
+        void View_EndOperation(object sender, SpriteEventArgs e)
+        {
+            View.RefreshOperation();
+        }
+
+        void View_ChangeSelectedSprite(object sender, SpriteEventArgs e)
+        {
+            View.SelectedSprite = e.Sprite;
         }
 
         void View_LoadSpritesSheet(object sender, EventArgs e)
@@ -32,14 +44,9 @@ namespace XRealEngine.Editor.Presenters
             if (result == DialogResult.OK)
             {
                 BuildAndLoadSpriteSheet(openDialog.FileName);
-                View.Title = openDialog.FileName;
                 fileName = openDialog.FileName;
+                View.Title = openDialog.FileName;
             }
-        }
-
-        void View_ShowMessage(object sender, EventArgs e)
-        {
-            View.Message = "Test";
         }
 
         void BuildAndLoadSpriteSheet(string filename)

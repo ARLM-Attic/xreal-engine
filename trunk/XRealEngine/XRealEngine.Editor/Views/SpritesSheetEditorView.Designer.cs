@@ -28,50 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Button button1;
-            this.spritesSheetViewer1 = new XRealEngine.Editor.Components.SpritesSheetViewer();
-            this.label1 = new System.Windows.Forms.Label();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSpritesSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDialog = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            button1 = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.spritesSheetViewer1 = new XRealEngine.Editor.Components.SpritesSheetViewer();
             this.menu.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.Location = new System.Drawing.Point(48, 23);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // spritesSheetViewer1
-            // 
-            this.spritesSheetViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spritesSheetViewer1.Location = new System.Drawing.Point(0, 0);
-            this.spritesSheetViewer1.Name = "spritesSheetViewer1";
-            this.spritesSheetViewer1.Size = new System.Drawing.Size(478, 502);
-            this.spritesSheetViewer1.SpritesSheet = null;
-            this.spritesSheetViewer1.TabIndex = 2;
-            this.spritesSheetViewer1.Text = "spritesSheetViewer1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
             // 
             // menu
             // 
@@ -123,11 +95,45 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(button1);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(703, 502);
-            this.splitContainer1.SplitterDistance = 478;
+            this.splitContainer1.SplitterDistance = 477;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.propertyGrid1);
+            this.splitContainer2.Size = new System.Drawing.Size(222, 502);
+            this.splitContainer2.SplitterDistance = 196;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(222, 302);
+            this.propertyGrid1.TabIndex = 0;
+            // 
+            // spritesSheetViewer1
+            // 
+            this.spritesSheetViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spritesSheetViewer1.Location = new System.Drawing.Point(0, 0);
+            this.spritesSheetViewer1.Name = "spritesSheetViewer1";
+            this.spritesSheetViewer1.SelectedSprite = null;
+            this.spritesSheetViewer1.Size = new System.Drawing.Size(477, 502);
+            this.spritesSheetViewer1.SpritesSheet = null;
+            this.spritesSheetViewer1.TabIndex = 2;
+            this.spritesSheetViewer1.Text = "spritesSheetViewer1";
+            this.spritesSheetViewer1.OperationComplete += new XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler(this.spritesSheetViewer1_OperationComplete);
+            this.spritesSheetViewer1.SelectedSpriteChanged += new XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler(this.spritesSheetViewer1_SelectedSpriteChanged);
             // 
             // SpritesSheetEditorView
             // 
@@ -144,8 +150,9 @@
             this.menu.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,11 +163,12 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openSpritesSheetToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openDialog;
         private XRealEngine.Editor.Components.SpritesSheetViewer spritesSheetViewer1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.PropertyGrid propertyGrid1;
     }
 }
 

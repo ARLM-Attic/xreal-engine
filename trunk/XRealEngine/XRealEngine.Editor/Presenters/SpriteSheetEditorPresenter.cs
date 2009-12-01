@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using XRealEngine.Windows.Builders;
 using Microsoft.Xna.Framework.Content;
 using XRealEngine.Editor.Components;
+using System.IO;
 
 namespace XRealEngine.Editor.Presenters
 {
@@ -26,7 +27,7 @@ namespace XRealEngine.Editor.Presenters
 
         void View_EndOperation(object sender, SpriteEventArgs e)
         {
-            View.RefreshOperation();
+            View.SelectedSprite = e.Sprite;
         }
 
         void View_ChangeSelectedSprite(object sender, SpriteEventArgs e)
@@ -54,6 +55,7 @@ namespace XRealEngine.Editor.Presenters
             ContentBuilder builder = new ContentBuilder(XnaVersion.XNA_3_1, null);
             builder.AddAssembly(String.Format("{0}\\{1}", Application.StartupPath, "XRealEngine.ContentPipeline.dll"));
             builder.AddFileToBuild(filename, "sheet", "XmlImporter", "SpritesSheetContentProcessor");
+            builder.BasePath = Path.GetDirectoryName(filename);
             builder.BuildProject();
 
             ContentManager content = new ContentManager(View.Services, builder.ContentPath);

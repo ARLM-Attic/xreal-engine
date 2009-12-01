@@ -38,6 +38,7 @@ namespace XRealEngine.Editor.Views
             set 
             { 
                 this.spritesSheetViewer1.SpritesSheet = value;
+                this.spritesSheetList1.AddSpritesSheet(value);
             }
         }
 
@@ -48,12 +49,8 @@ namespace XRealEngine.Editor.Views
             {
                 this.spritesSheetViewer1.SelectedSprite = value;
                 this.propertyGrid1.SelectedObject = value;
+                this.spritesSheetList1.SelectedSprite = value;
             }
-        }
-
-        public void RefreshOperation()
-        {
-            this.propertyGrid1.Refresh();
         }
 
         public IServiceProvider Services

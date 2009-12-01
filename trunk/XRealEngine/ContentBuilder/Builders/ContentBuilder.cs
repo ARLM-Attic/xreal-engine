@@ -26,7 +26,6 @@ namespace XRealEngine.Windows.Builders
         private string projectPath;
         private string outputPath;
 
-        
         private string basePath;
         private bool isDisposed;
 
@@ -54,6 +53,24 @@ namespace XRealEngine.Windows.Builders
             }
         }
 
+        public string BasePath
+        {
+            get { return basePath; }
+            set 
+            {
+                if (value != null)
+                {
+                    this.basePath = value;
+                }
+                else
+                {
+                    basePath = GetTempPath();
+                }
+                this.projectPath = Path.Combine(basePath, "content.contentproj");
+                this.outputPath = Path.Combine(basePath, "bin");
+            }
+        }
+
         private string OutputPath
         {
             get { return outputPath; }
@@ -76,17 +93,12 @@ namespace XRealEngine.Windows.Builders
             this.Logger = logger;
             this.assemblyManager = new AssemblyManager();
             this.contentFileManager = new ContentFileManager();
-            this.basePath = GetTempPath();
-            this.projectPath = Path.Combine(basePath, "content.contentproj");
-            this.outputPath = Path.Combine(basePath, "bin");
-
+            this.BasePath = null;
+            
             assemblyManager.AddAssembly(String.Format("Microsoft.Xna.Framework.Content.Pipeline.FBXImporter, Version={0}.0.0, PublicKeyToken=6d5c3888ef60e27d", GetXnaFrameworkVersion(version)));
             assemblyManager.AddAssembly(String.Format("Microsoft.Xna.Framework.Content.Pipeline.XImporter, Version={0}.0.0, PublicKeyToken=6d5c3888ef60e27d", GetXnaFrameworkVersion(version)));
             assemblyManager.AddAssembly(String.Format("Microsoft.Xna.Framework.Content.Pipeline.TextureImporter, Version={0}.0.0, PublicKeyToken=6d5c3888ef60e27d", GetXnaFrameworkVersion(version)));
             assemblyManager.AddAssembly(String.Format("Microsoft.Xna.Framework.Content.Pipeline.EffectImporter, Version={0}.0.0, PublicKeyToken=6d5c3888ef60e27d", GetXnaFrameworkVersion(version)));
-
-           
-
         }
 
         ~ContentBuilder()
@@ -207,7 +219,7 @@ namespace XRealEngine.Windows.Builders
             if (!isDisposed)
             {
                 isDisposed = true;
-                Directory.Delete(basePath, true);
+                //Directory.Delete(basePath, true);
             }
         }
 

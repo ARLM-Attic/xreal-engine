@@ -37,10 +37,12 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.spritesSheetViewer1 = new XRealEngine.Editor.Components.SpritesSheetViewer();
+            this.spritesSheetList1 = new XRealEngine.Editor.Components.SpritesSheetList();
             this.menu.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +109,10 @@
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.spritesSheetList1);
+            // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.propertyGrid1);
@@ -132,8 +138,15 @@
             this.spritesSheetViewer1.SpritesSheet = null;
             this.spritesSheetViewer1.TabIndex = 2;
             this.spritesSheetViewer1.Text = "spritesSheetViewer1";
-            this.spritesSheetViewer1.OperationComplete += new XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler(this.spritesSheetViewer1_OperationComplete);
             this.spritesSheetViewer1.SelectedSpriteChanged += new XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler(this.spritesSheetViewer1_SelectedSpriteChanged);
+            // 
+            // spritesSheetList1
+            // 
+            this.spritesSheetList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spritesSheetList1.Location = new System.Drawing.Point(0, 0);
+            this.spritesSheetList1.Name = "spritesSheetList1";
+            this.spritesSheetList1.Size = new System.Drawing.Size(222, 196);
+            this.spritesSheetList1.TabIndex = 0;
             // 
             // SpritesSheetEditorView
             // 
@@ -151,6 +164,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -169,6 +183,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private XRealEngine.Editor.Components.SpritesSheetList spritesSheetList1;
     }
 }
 

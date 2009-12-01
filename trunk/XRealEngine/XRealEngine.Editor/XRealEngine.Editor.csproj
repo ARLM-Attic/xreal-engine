@@ -55,6 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\SpriteEvents.cs" />
+    <Compile Include="Components\SpritesSheetList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\SpritesSheetList.Designer.cs">
+      <DependentUpon>SpritesSheetList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\SpritesSheetViewer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\SpritesSheetList.resx">
+      <DependentUpon>SpritesSheetList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\SpritesSheetEditorView.resx">
       <DependentUpon>SpritesSheetEditorView.cs</DependentUpon>
     </EmbeddedResource>

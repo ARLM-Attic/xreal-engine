@@ -21,8 +21,8 @@ namespace XRealEngine.Editor.Presenters
             : base(view)
         {
             View.LoadSpritesSheet += new EventHandler(View_LoadSpritesSheet);
-            View.ChangeSelectedSprite += new XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler(View_ChangeSelectedSprite);
-            View.EndOperation += new SpritesSheetViewer.SpriteEventHandler(View_EndOperation);
+            View.ChangeSelectedSprite += new SpriteEventHandler(View_ChangeSelectedSprite);
+            View.EndOperation += new SpriteEventHandler(View_EndOperation);
         }
 
         void View_EndOperation(object sender, SpriteEventArgs e)

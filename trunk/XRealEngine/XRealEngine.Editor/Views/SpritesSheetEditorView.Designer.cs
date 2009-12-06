@@ -1,4 +1,5 @@
-﻿namespace XRealEngine.Editor.Views
+﻿using XRealEngine.Editor.Components;
+namespace XRealEngine.Editor.Views
 {
     partial class SpritesSheetEditorView
     {
@@ -34,10 +35,10 @@
             this.openDialog = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.spritesSheetViewer1 = new XRealEngine.Editor.Components.SpritesSheetViewer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.spritesSheetList1 = new XRealEngine.Editor.Components.SpritesSheetList();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.menu.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,6 +103,19 @@
             this.splitContainer1.SplitterDistance = 477;
             this.splitContainer1.TabIndex = 5;
             // 
+            // spritesSheetViewer1
+            // 
+            this.spritesSheetViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spritesSheetViewer1.Location = new System.Drawing.Point(0, 0);
+            this.spritesSheetViewer1.Name = "spritesSheetViewer1";
+            this.spritesSheetViewer1.SelectedSprite = null;
+            this.spritesSheetViewer1.Size = new System.Drawing.Size(477, 502);
+            this.spritesSheetViewer1.SpritesSheet = null;
+            this.spritesSheetViewer1.TabIndex = 2;
+            this.spritesSheetViewer1.Text = "spritesSheetViewer1";
+            this.spritesSheetViewer1.SelectedSpriteChanged += new XRealEngine.Editor.Components.SpriteEventHandler(this.spritesSheetViewer1_SelectedSpriteChanged);
+            this.spritesSheetViewer1.OperationEnded += new XRealEngine.Editor.Components.SpriteEventHandler(this.spritesSheetViewer1_OperationEnded);
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -120,6 +134,16 @@
             this.splitContainer2.SplitterDistance = 196;
             this.splitContainer2.TabIndex = 0;
             // 
+            // spritesSheetList1
+            // 
+            this.spritesSheetList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spritesSheetList1.Location = new System.Drawing.Point(0, 0);
+            this.spritesSheetList1.Name = "spritesSheetList1";
+            this.spritesSheetList1.SelectedSheet = null;
+            this.spritesSheetList1.SelectedSprite = null;
+            this.spritesSheetList1.Size = new System.Drawing.Size(222, 196);
+            this.spritesSheetList1.TabIndex = 0;
+            // 
             // propertyGrid1
             // 
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -127,26 +151,6 @@
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.Size = new System.Drawing.Size(222, 302);
             this.propertyGrid1.TabIndex = 0;
-            // 
-            // spritesSheetViewer1
-            // 
-            this.spritesSheetViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spritesSheetViewer1.Location = new System.Drawing.Point(0, 0);
-            this.spritesSheetViewer1.Name = "spritesSheetViewer1";
-            this.spritesSheetViewer1.SelectedSprite = null;
-            this.spritesSheetViewer1.Size = new System.Drawing.Size(477, 502);
-            this.spritesSheetViewer1.SpritesSheet = null;
-            this.spritesSheetViewer1.TabIndex = 2;
-            this.spritesSheetViewer1.Text = "spritesSheetViewer1";
-            this.spritesSheetViewer1.SelectedSpriteChanged += new XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler(this.spritesSheetViewer1_SelectedSpriteChanged);
-            // 
-            // spritesSheetList1
-            // 
-            this.spritesSheetList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spritesSheetList1.Location = new System.Drawing.Point(0, 0);
-            this.spritesSheetList1.Name = "spritesSheetList1";
-            this.spritesSheetList1.Size = new System.Drawing.Size(222, 196);
-            this.spritesSheetList1.TabIndex = 0;
             // 
             // SpritesSheetEditorView
             // 

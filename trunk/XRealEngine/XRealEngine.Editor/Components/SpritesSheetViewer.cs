@@ -13,8 +13,8 @@ namespace XRealEngine.Editor.Components
 {
     public class SpritesSheetViewer : GraphicsDeviceControl
     {
-        public delegate void SpriteEventHandler (Object sender, SpriteEventArgs e);
         public event SpriteEventHandler SelectedSpriteChanged;
+        public event SpriteEventHandler OperationEnded;
 
         enum PointPosition
         {
@@ -341,7 +341,7 @@ namespace XRealEngine.Editor.Components
         {
             if (operation != Operation.None)
             {
-                this.SelectedSpriteChanged(this, new SpriteEventArgs(this.selectedSprite));
+                this.OperationEnded(this, new SpriteEventArgs(this.SelectedSprite));
                 operation = Operation.None;
             }
         }

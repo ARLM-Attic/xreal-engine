@@ -6,6 +6,8 @@ using XRealEngine.Framework.Sprites;
 
 namespace XRealEngine.Editor.Components
 {
+    public delegate void SpriteEventHandler(Object sender, SpriteEventArgs e);
+
     public class SpriteEventArgs : EventArgs
     {
         public SpriteDefinition Sprite;

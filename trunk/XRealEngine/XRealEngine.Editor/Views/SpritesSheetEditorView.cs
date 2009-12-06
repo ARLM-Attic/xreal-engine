@@ -17,8 +17,8 @@ namespace XRealEngine.Editor.Views
     {
         private Presenter<SpritesSheetEditorView> presenter;
         public event EventHandler LoadSpritesSheet;
-        public event XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler ChangeSelectedSprite;
-        public event XRealEngine.Editor.Components.SpritesSheetViewer.SpriteEventHandler EndOperation;
+        public event SpriteEventHandler ChangeSelectedSprite;
+        public event SpriteEventHandler EndOperation;
 
         public SpritesSheetEditorView()
         {
@@ -68,7 +68,7 @@ namespace XRealEngine.Editor.Views
             ChangeSelectedSprite(this, e);
         }
 
-        private void spritesSheetViewer1_OperationComplete(object sender, SpriteEventArgs e)
+        private void spritesSheetViewer1_OperationEnded(object sender, SpriteEventArgs e)
         {
             EndOperation(this, e);
         }

@@ -23,11 +23,30 @@ namespace XRealEngine.Editor.Presenters
             View.LoadSpritesSheet += new EventHandler(View_LoadSpritesSheet);
             View.ChangeSelectedSprite += new SpriteEventHandler(View_ChangeSelectedSprite);
             View.EndOperation += new SpriteEventHandler(View_EndOperation);
+            View.RemoveSelectedSprite += new SpriteEventHandler(View_RemoveSelectedSprite);
+            View.AddSprite += new SpriteEventHandler(View_AddSprite);
+            View.SaveSpritesSheet += new EventHandler(View_SaveSpritesSheet);
+        }
+
+        void View_SaveSpritesSheet(object sender, EventArgs e)
+        {
+            SpritesSheetContent content = new SpritesSheetContent(View.SpritesSheet);
+            Serializer.Serialize<SpritesSheetContent>(fileName, content);
+        }
+
+        void View_AddSprite(object sender, SpriteEventArgs e)
+        {
+            View.AddNewSprite(e.Sprite);
+        }
+
+        void View_RemoveSelectedSprite(object sender, SpriteEventArgs e)
+        {
+            View.RemoveSpriteFromSheet(e.Sprite);
         }
 
         void View_EndOperation(object sender, SpriteEventArgs e)
         {
-            View.SelectedSprite = e.Sprite;
+            View.RefreshSelectedSprite();
         }
 
         void View_ChangeSelectedSprite(object sender, SpriteEventArgs e)
@@ -55,6 +74,7 @@ namespace XRealEngine.Editor.Presenters
             ContentBuilder builder = new ContentBuilder(XnaVersion.XNA_3_1, null);
             builder.AddAssembly(String.Format("{0}\\{1}", Application.StartupPath, "XRealEngine.ContentPipeline.dll"));
             builder.AddFileToBuild(filename, "sheet", "XmlImporter", "SpritesSheetContentProcessor");
+            builder.AddFileToBuild(filename, "sheet", "XmlImporter", "SpritesSheetContentProcessor");
             builder.BasePath = Path.GetDirectoryName(filename);
             builder.BuildProject();
 
@@ -62,7 +82,7 @@ namespace XRealEngine.Editor.Presenters
             View.SpritesSheet = content.Load<SpritesSheet>("sheet");
         }
 
-        
+
     }
-    
+
 }

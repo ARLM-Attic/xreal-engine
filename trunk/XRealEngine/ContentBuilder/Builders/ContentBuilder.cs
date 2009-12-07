@@ -171,6 +171,7 @@ namespace XRealEngine.Windows.Builders
                                        ".ContentPipeline.targets", null);
 
             msBuildProject.Build();
+            msBuildEngine.UnregisterAllLoggers();
         }
 
         private static string GetXnaFrameworkVersion(XnaVersion version)

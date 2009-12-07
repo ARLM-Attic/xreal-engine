@@ -17,8 +17,11 @@ namespace XRealEngine.Editor.Views
     {
         private Presenter<SpritesSheetEditorView> presenter;
         public event EventHandler LoadSpritesSheet;
+        public event EventHandler SaveSpritesSheet;
         public event SpriteEventHandler ChangeSelectedSprite;
         public event SpriteEventHandler EndOperation;
+        public event SpriteEventHandler RemoveSelectedSprite;
+        public event SpriteEventHandler AddSprite;
 
         public SpritesSheetEditorView()
         {
@@ -29,14 +32,20 @@ namespace XRealEngine.Editor.Views
 
         public string Title
         {
-            set { this.Text = String.Format("Sprites Sheet Editor : {0}", value); }
+            set
+            {
+                this.Text = String.Format("Sprites Sheet Editor : {0}", value);
+            }
         }
 
         public SpritesSheet SpritesSheet
         {
-            get { return this.spritesSheetViewer1.SpritesSheet; }
-            set 
-            { 
+            get
+            {
+                return this.spritesSheetViewer1.SpritesSheet;
+            }
+            set
+            {
                 this.spritesSheetViewer1.SpritesSheet = value;
                 this.spritesSheetList1.AddSpritesSheet(value);
             }
@@ -53,9 +62,28 @@ namespace XRealEngine.Editor.Views
             }
         }
 
+        public void RemoveSpriteFromSheet(SpriteDefinition sprite)
+        {
+            this.spritesSheetViewer1.RemoveSprite(sprite);
+            this.propertyGrid1.SelectedObject = null;
+            this.spritesSheetList1.RemoveSprite(sprite);
+        }
+
+        public void AddNewSprite(SpriteDefinition sprite)
+        {
+            this.spritesSheetViewer1.AddSprite(sprite);
+            this.spritesSheetList1.AddSprite(sprite);
+        }
+
         public IServiceProvider Services
         {
             get { return this.spritesSheetViewer1.Services; }
+        }
+
+        public void RefreshSelectedSprite()
+        {
+            this.spritesSheetList1.RefreshSpriteImage(this.SelectedSprite);
+            this.propertyGrid1.Refresh();
         }
 
         private void openSpritesSheetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -72,6 +100,31 @@ namespace XRealEngine.Editor.Views
         {
             EndOperation(this, e);
         }
-        
+
+        private void propertyGrid1_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            EndOperation(this, new SpriteEventArgs(this.SelectedSprite));
+        }
+
+        private void spritesSheetList1_SelectedSpriteChanged(object sender, SpriteEventArgs e)
+        {
+            ChangeSelectedSprite(this, e);
+        }
+
+        private void spritesSheetList1_SelectedSpriteRemoved(object sender, SpriteEventArgs e)
+        {
+            RemoveSelectedSprite(this, e);
+        }
+
+        private void spritesSheetList1_SpriteAdded(object sender, SpriteEventArgs e)
+        {
+            AddSprite(this, e);
+        }
+
+        private void saveSpritesSheetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveSpritesSheet(this, e);
+        }
+
     }
 }

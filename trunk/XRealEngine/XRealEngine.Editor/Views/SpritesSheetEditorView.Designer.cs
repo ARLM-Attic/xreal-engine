@@ -39,6 +39,7 @@ namespace XRealEngine.Editor.Views
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.spritesSheetList1 = new XRealEngine.Editor.Components.SpritesSheetList();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.saveSpritesSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,7 +62,8 @@ namespace XRealEngine.Editor.Views
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openSpritesSheetToolStripMenuItem});
+            this.openSpritesSheetToolStripMenuItem,
+            this.saveSpritesSheetToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -143,6 +145,9 @@ namespace XRealEngine.Editor.Views
             this.spritesSheetList1.SelectedSprite = null;
             this.spritesSheetList1.Size = new System.Drawing.Size(222, 196);
             this.spritesSheetList1.TabIndex = 0;
+            this.spritesSheetList1.SelectedSpriteChanged += new XRealEngine.Editor.Components.SpriteEventHandler(this.spritesSheetList1_SelectedSpriteChanged);
+            this.spritesSheetList1.SpriteRemoved += new XRealEngine.Editor.Components.SpriteEventHandler(this.spritesSheetList1_SelectedSpriteRemoved);
+            this.spritesSheetList1.SpriteAdded += new XRealEngine.Editor.Components.SpriteEventHandler(this.spritesSheetList1_SpriteAdded);
             // 
             // propertyGrid1
             // 
@@ -151,6 +156,14 @@ namespace XRealEngine.Editor.Views
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.Size = new System.Drawing.Size(222, 302);
             this.propertyGrid1.TabIndex = 0;
+            this.propertyGrid1.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.propertyGrid1_PropertyValueChanged);
+            // 
+            // saveSpritesSheetToolStripMenuItem
+            // 
+            this.saveSpritesSheetToolStripMenuItem.Name = "saveSpritesSheetToolStripMenuItem";
+            this.saveSpritesSheetToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.saveSpritesSheetToolStripMenuItem.Text = "Save Sprites Sheet";
+            this.saveSpritesSheetToolStripMenuItem.Click += new System.EventHandler(this.saveSpritesSheetToolStripMenuItem_Click);
             // 
             // SpritesSheetEditorView
             // 
@@ -188,6 +201,7 @@ namespace XRealEngine.Editor.Views
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private XRealEngine.Editor.Components.SpritesSheetList spritesSheetList1;
+        private System.Windows.Forms.ToolStripMenuItem saveSpritesSheetToolStripMenuItem;
     }
 }
 

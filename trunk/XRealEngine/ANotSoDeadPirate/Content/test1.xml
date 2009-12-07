@@ -4,11 +4,43 @@
     <SpritesList>
       <Sprite>
         <Name>sprite_01</Name>
-        <Rectangle>10 10 100 100</Rectangle>
+        <Rectangle>18 43 404 131</Rectangle>
       </Sprite>
       <Sprite>
         <Name>sprite_02</Name>
-        <Rectangle>20 10 100 100</Rectangle>
+        <Rectangle>16 183 380 169</Rectangle>
+      </Sprite>
+      <Sprite>
+        <Name>sprite_03</Name>
+        <Rectangle>430 305 50 101</Rectangle>
+      </Sprite>
+      <Sprite>
+        <Name>sprite_04</Name>
+        <Rectangle>443 227 50 62</Rectangle>
+      </Sprite>
+      <Sprite>
+        <Name>sprite_05</Name>
+        <Rectangle>443 151 50 70</Rectangle>
+      </Sprite>
+      <Sprite>
+        <Name>sprite_06</Name>
+        <Rectangle>450 96 33 36</Rectangle>
+      </Sprite>
+      <Sprite>
+        <Name>sprite_07</Name>
+        <Rectangle>441 41 55 46</Rectangle>
+      </Sprite>
+      <Sprite>
+        <Name>sprite_08</Name>
+        <Rectangle>523 12 79 79</Rectangle>
+      </Sprite>
+      <Sprite>
+        <Name>sprite_09</Name>
+        <Rectangle>523 101 144 81</Rectangle>
+      </Sprite>
+      <Sprite>
+        <Name>sprite_10</Name>
+        <Rectangle>19 377 384 176</Rectangle>
       </Sprite>
     </SpritesList>
     <TexturePath>maps1.png</TexturePath>

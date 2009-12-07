@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\MapViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\SpriteEvents.cs" />
     <Compile Include="Components\SpritesSheetList.cs">
       <SubType>UserControl</SubType>
@@ -68,6 +71,12 @@
     <Compile Include="Presenters\Presenter.cs" />
     <Compile Include="Presenters\SpriteSheetEditorPresenter.cs" />
     <Compile Include="Views\IView.cs" />
+    <Compile Include="Views\MapEditorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MapEditorView.Designer.cs">
+      <DependentUpon>MapEditorView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpritesSheetEditorView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Components\SpritesSheetList.resx">
       <DependentUpon>SpritesSheetList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MapEditorView.resx">
+      <DependentUpon>MapEditorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SpritesSheetEditorView.resx">
       <DependentUpon>SpritesSheetEditorView.cs</DependentUpon>

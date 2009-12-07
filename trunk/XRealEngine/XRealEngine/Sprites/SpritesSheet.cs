@@ -24,7 +24,18 @@ namespace XRealEngine.Framework.Sprites
         /// <summary>Texture that holds the different sprites graphics</summary>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         [ContentSerializer(ElementName = "Texture")]
-        Texture2D texture;
+        private Texture2D texture;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>Path to the texture that holds the different sprites graphics</summary>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        [ContentSerializer(ElementName = "TexturePath", Optional = true)]
+        private string texturePath;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>Index used to compute sprites names</summary>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        private int NextSpriteIndex = 1;
 
         #endregion
 
@@ -38,6 +49,12 @@ namespace XRealEngine.Framework.Sprites
         {
             get { return texture; }
             set { texture = value;}
+        }
+
+        [ContentSerializerIgnore]
+        public string TexturePath
+        {
+            get { return texturePath; }
         }
 
         #endregion
@@ -102,8 +119,23 @@ namespace XRealEngine.Framework.Sprites
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public void Add(SpriteDefinition sprite)
         {
-            if (String.IsNullOrEmpty(sprite.Name)) sprite.Name = String.Format("Sprite_{0:D2}", spritesList.Count);
+            if (String.IsNullOrEmpty(sprite.Name)) sprite.Name = String.Format("sprite_{0:D2}", NextSpriteIndex);
+
+            while(this.ContainsByName(sprite.Name))
+            {
+                NextSpriteIndex++;
+                sprite.Name = String.Format("sprite_{0:D2}", NextSpriteIndex);
+            }
             spritesList.Add(sprite);
+        }
+
+        public bool ContainsByName(string name)
+        {
+            for (int i = 0; i < spritesList.Count; i++)
+            {
+                if (spritesList[i].Name == name) return true;
+            }
+            return false;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////

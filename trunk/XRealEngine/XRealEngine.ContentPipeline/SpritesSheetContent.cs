@@ -24,5 +24,15 @@ namespace XRealEngine.ContentPipeline
         {
             SpritesList = new List<SpriteDefinition>();
         }
+
+        public SpritesSheetContent(SpritesSheet sheet)
+        {
+            SpritesList = new List<SpriteDefinition>();
+            foreach(SpriteDefinition sprite in sheet)
+            {
+                this.SpritesList.Add(sprite);
+            }
+            this.TexturePath = sheet.TexturePath;
+        }
     }
 }

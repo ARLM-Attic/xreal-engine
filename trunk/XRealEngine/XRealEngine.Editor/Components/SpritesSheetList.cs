@@ -13,6 +13,10 @@ namespace XRealEngine.Editor.Components
 {
     public partial class SpritesSheetList : UserControl
     {
+        public event SpriteEventHandler SelectedSpriteChanged;
+        public event SpriteEventHandler SpriteRemoved;
+        public event SpriteEventHandler SpriteAdded;
+
         private List<SpritesSheet> sheets;
         private SpritesSheet selectedSheet;
         private SpriteDefinition selectedSprite;
@@ -30,8 +34,11 @@ namespace XRealEngine.Editor.Components
                     selectedSprite = value;
                     if (value != null)
                     {
-                        this.listView1.Items[value.Name].Selected = true;
-                        this.listView1.Refresh();
+                        if (!this.listView1.Items[value.Name].Selected)
+                        {
+                            this.listView1.Items[value.Name].Selected = true;
+                            this.listView1.Refresh();
+                        }
                     }
                     else
                     {
@@ -76,9 +83,7 @@ namespace XRealEngine.Editor.Components
             {
                 foreach (SpriteDefinition sprite in SelectedSheet)
                 {
-                    Bitmap bitmap = GetImageFromTexture(sprite.Rectangle, SelectedSheet.Texture);
-                    this.imageList1.Images.Add(sprite.Name, bitmap);
-                    this.listView1.Items.Add(sprite.Name, sprite.Name, sprite.Name);
+                    AddSprite(sprite);
                 }
             }
         }
@@ -99,7 +104,91 @@ namespace XRealEngine.Editor.Components
                 }
             }
 
-            return bitmap;
+
+
+            return ResizeBitmap(bitmap, this.imageList1.ImageSize);
+        }
+
+        private Bitmap ResizeBitmap(Bitmap b, Size newSize)
+        {
+            Bitmap result = new Bitmap(newSize.Width, newSize.Height);
+            using (Graphics g = Graphics.FromImage((Image)result))
+                g.DrawImage(b, 0, 0, newSize.Width, newSize.Height);
+            return result;
+        }
+
+        public void RefreshSpriteImage(SpriteDefinition sprite)
+        {
+            Bitmap bitmap = GetImageFromTexture(sprite.Rectangle, SelectedSheet.Texture);
+            this.imageList1.Images.RemoveByKey(sprite.Name);
+            this.imageList1.Images.Add(sprite.Name, bitmap);
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count == 1)
+            {
+                this.SelectedSpriteChanged(this, new SpriteEventArgs(selectedSheet[listView1.SelectedIndices[0]]));
+            }
+            else
+            {
+                this.SelectedSpriteChanged(this, new SpriteEventArgs(null));
+            }
+        }
+
+        private void toolRemoveSprite_Click(object sender, EventArgs e)
+        {
+            RemoveSprite(this.SelectedSprite);
+        }
+
+        public void RemoveSprite(SpriteDefinition sprite)
+        {
+            if (sprite != null)
+            {
+                if (SelectedSheet.Contains(sprite))
+                {
+                    SpriteEventArgs e = new SpriteEventArgs(sprite);
+                    this.imageList1.Images.RemoveByKey(sprite.Name);
+                    this.listView1.Items.RemoveByKey(sprite.Name);
+                    SelectedSheet.Remove(sprite);
+                    if (sprite == SelectedSprite)
+                    {
+                        SelectedSprite = null;
+                        
+                    }
+                    SpriteRemoved(this, e);
+                }
+                
+            }
+        }
+
+        public void AddNewSprite()
+        {
+            SpriteDefinition sprite = new SpriteDefinition();
+            sprite.X = 50;
+            sprite.Y = 50;
+            sprite.Width = 50;
+            sprite.Height = 50;
+
+            AddSprite(sprite);
+            SpriteAdded(this, new SpriteEventArgs(sprite));
+            this.SelectedSprite = sprite;
+        }
+
+        public void AddSprite(SpriteDefinition sprite)
+        {
+            if (!this.SelectedSheet.Contains(sprite)) this.SelectedSheet.Add(sprite);
+            if (!this.imageList1.Images.ContainsKey(sprite.Name))
+            {
+                Bitmap bitmap = GetImageFromTexture(sprite.Rectangle, SelectedSheet.Texture);
+                this.imageList1.Images.Add(sprite.Name, bitmap);
+                this.listView1.Items.Add(sprite.Name, sprite.Name, sprite.Name);
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            AddNewSprite();
         }
     }
 }

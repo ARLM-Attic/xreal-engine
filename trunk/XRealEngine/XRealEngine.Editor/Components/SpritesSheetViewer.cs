@@ -62,10 +62,9 @@ namespace XRealEngine.Editor.Components
                 if (value != selectedSprite)
                 {
                     selectedSprite = value;
-                    this.Refresh();
                     this.SelectedSpriteChanged(this, new SpriteEventArgs(value));
+                    this.Refresh();
                 }
-
             }
         }
 
@@ -77,6 +76,19 @@ namespace XRealEngine.Editor.Components
                 this.sheet = value;
                 this.Refresh();
             }
+        }
+
+        public void RemoveSprite(SpriteDefinition sprite)
+        {
+            this.sheet.Remove(sprite);
+            if (sprite == this.SelectedSprite) this.SelectedSprite = null;
+            this.Refresh();
+        }
+
+        public void AddSprite(SpriteDefinition sprite)
+        {
+            if (!this.sheet.Contains(sprite)) this.sheet.Add(sprite);
+            this.Refresh();
         }
 
         protected override void Initialize()

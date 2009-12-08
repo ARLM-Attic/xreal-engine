@@ -5,7 +5,7 @@ using XRealEngine.Framework.Graphics;
 
 namespace XRealEngine.ContentPipeline
 {
-    [ContentSerializerRuntimeType("XRealEngine.Framework.Sprites.SpritesSheet, XRealEngine")]
+    [ContentSerializerRuntimeType("XRealEngine.Framework.Graphics.SpritesSheet, XRealEngine")]
     public class SpritesSheetContent
     {
         [ContentSerializer(ElementName = "SpritesList", CollectionItemName = "Sprite")]

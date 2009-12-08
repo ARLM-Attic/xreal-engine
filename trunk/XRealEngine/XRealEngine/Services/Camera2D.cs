@@ -57,6 +57,11 @@ namespace XRealEngine.Framework.Services
         {
             game.Services.AddService(typeof(ICamera2D), this);
             graphics = game.GraphicsDevice;
+
+            zoom = 1.0f;
+            rotation = 0.0f;
+            position = Vector2.Zero;
+            CreateTransformationMatrix();
         }
 
         private void CreateTransformationMatrix()

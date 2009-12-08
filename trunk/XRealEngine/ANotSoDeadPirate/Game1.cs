@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using XRealEngine.ContentPipeline;
 using XRealEngine.Framework.Graphics;
+using XRealEngine.Framework.Services;
 
 namespace ANotSoDeadPirate
 {
@@ -13,6 +13,8 @@ namespace ANotSoDeadPirate
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpritesSheet sheet;
+        Camera2D camera;
 
         public Game1()
         {
@@ -28,10 +30,6 @@ namespace ANotSoDeadPirate
         /// </summary>
         protected override void Initialize()
         {
-            //CreateSpriteSheet();
-            //LoadSpriteSheetContent();
-            LoadSpriteSheet();
-
             base.Initialize();
         }
 
@@ -43,8 +41,11 @@ namespace ANotSoDeadPirate
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            camera = new Camera2D(this);
 
             // TODO: use this.Content to load your game content here
+            sheet = Content.Load<SpritesSheet>("test1");
+            
         }
 
         /// <summary>
@@ -64,9 +65,16 @@ namespace ANotSoDeadPirate
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) this.Exit();
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < -0.5) camera.Position = new Vector2(camera.Position.X + 5, camera.Position.Y);
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0.5) camera.Position = new Vector2(camera.Position.X - 5, camera.Position.Y);
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < -0.5) camera.Position = new Vector2(camera.Position.X, camera.Position.Y - 5);
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0.5) camera.Position = new Vector2(camera.Position.X, camera.Position.Y + 5);
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X < -0.5) camera.Rotation += 0.1f;
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.X > 0.5) camera.Rotation -= 0.1f;
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y < -0.5) camera.Zoom += 0.01f;
+            if (GamePad.GetState(PlayerIndex.One).ThumbSticks.Right.Y > 0.5) camera.Zoom -= 0.01f;
+            
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -80,24 +88,14 @@ namespace ANotSoDeadPirate
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, camera.TransformationMatrix);
+            spriteBatch.Draw(sheet.Texture, new Vector2(0 ,0), sheet[0].Rectangle, Color.White);
+            spriteBatch.Draw(sheet.Texture, new Vector2(500, 0), sheet[0].Rectangle, Color.White);
+            spriteBatch.Draw(sheet.Texture, new Vector2(300, 550), sheet[0].Rectangle, Color.White);
+            spriteBatch.Draw(sheet.Texture, new Vector2(500, 600), sheet[0].Rectangle, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        private void CreateSpriteSheet()
-        {
-            SpritesSheetContent sheet = new SpritesSheetContent();
-            sheet.SpritesList.Add(new SpriteDefinition("sprite_01", new Rectangle(10,10,100,100)));
-            sheet.SpritesList.Add(new SpriteDefinition("sprite_02", new Rectangle(20, 10, 100, 100)));;
-            sheet.TexturePath = "maps1.png";
-
-            Serializer.Serialize<SpritesSheetContent>(@"D:\Users\Michaël\Documents\Visual Studio 2008\Projects\XRealEngine\ANotSoDeadPirate\Content\test1.xml", sheet);
-        }
-
-        private void LoadSpriteSheet()
-        {
-            SpritesSheet sheet = Content.Load<SpritesSheet>("test1");
         }
     }
 }

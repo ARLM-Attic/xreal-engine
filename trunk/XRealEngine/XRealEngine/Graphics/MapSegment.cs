@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace XRealEngine.Framework.Sprites
+namespace XRealEngine.Framework.Graphics
 {
     public class MapSegment
     {

@@ -87,13 +87,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprites\ISpritesSheet.cs" />
-    <Compile Include="Sprites\Map.cs" />
-    <Compile Include="Sprites\MapLayer.cs" />
-    <Compile Include="Sprites\MapSegment.cs" />
-    <Compile Include="Sprites\MapSegmentsCollection.cs" />
-    <Compile Include="Sprites\SpriteDefinition.cs" />
-    <Compile Include="Sprites\SpritesSheet.cs" />
+    <Compile Include="Graphics\ISpritesSheet.cs" />
+    <Compile Include="Graphics\Map.cs" />
+    <Compile Include="Graphics\MapLayer.cs" />
+    <Compile Include="Graphics\MapSegment.cs" />
+    <Compile Include="Graphics\MapSegmentsCollection.cs" />
+    <Compile Include="Graphics\SpriteDefinition.cs" />
+    <Compile Include="Graphics\SpritesSheet.cs" />
   </ItemGroup>
   <ItemGroup>
     <NestedContentProject Include="Content\Content.contentproj">

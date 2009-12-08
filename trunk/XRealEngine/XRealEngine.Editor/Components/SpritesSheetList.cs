@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using XRealEngine.Framework.Sprites;
 using Microsoft.Xna.Framework.Graphics;
+using XRealEngine.Framework.Graphics;
 
 namespace XRealEngine.Editor.Components
 {

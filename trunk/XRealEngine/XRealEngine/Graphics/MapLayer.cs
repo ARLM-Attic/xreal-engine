@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace XRealEngine.Framework.Sprites
+namespace XRealEngine.Framework.Graphics
 {
     public class MapLayer
     {

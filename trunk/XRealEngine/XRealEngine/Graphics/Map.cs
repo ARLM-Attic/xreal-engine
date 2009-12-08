@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace XRealEngine.Framework.Sprites
+namespace XRealEngine.Framework.Graphics
 {
     public class Map
     {

@@ -2,7 +2,7 @@
 using XRealEngine.Framework;
 using Microsoft.Xna.Framework.Content;
 
-namespace XRealEngine.Framework.Sprites
+namespace XRealEngine.Framework.Graphics
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////// 
     /// <summary>

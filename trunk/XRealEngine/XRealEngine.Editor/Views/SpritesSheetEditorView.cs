@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using XRealEngine.Editor.Presenters;
-using Microsoft.Xna.Framework.Graphics;
-using XRealEngine.Framework.Sprites;
 using XRealEngine.Editor.Components;
+using XRealEngine.Editor.Presenters;
+using XRealEngine.Framework.Graphics;
 
 namespace XRealEngine.Editor.Views
 {

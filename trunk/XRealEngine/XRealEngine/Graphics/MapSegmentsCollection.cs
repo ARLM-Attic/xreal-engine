@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace XRealEngine.Framework.Sprites
+namespace XRealEngine.Framework.Graphics
 {
     public class MapSegmentsCollection
     {

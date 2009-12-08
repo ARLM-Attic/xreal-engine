@@ -94,6 +94,8 @@
     <Compile Include="Graphics\MapSegmentsCollection.cs" />
     <Compile Include="Graphics\SpriteDefinition.cs" />
     <Compile Include="Graphics\SpritesSheet.cs" />
+    <Compile Include="Services\Camera2D.cs" />
+    <Compile Include="Services\ICamera2D.cs" />
   </ItemGroup>
   <ItemGroup>
     <NestedContentProject Include="Content\Content.contentproj">

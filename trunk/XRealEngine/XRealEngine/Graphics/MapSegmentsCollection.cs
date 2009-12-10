@@ -5,26 +5,26 @@ namespace XRealEngine.Framework.Graphics
 {
     public class MapSegmentsCollection
     {
-        private List<List<MapSegment>> mapSegments;
+        private List<MapSegment> mapSegments;
 
         public MapSegmentsCollection()
         {
-            mapSegments = new List<List<MapSegment>>();
+            mapSegments = new List<MapSegment>();
         }
 
-        public MapSegment this[int layerIndex, int segmentIndex]
+        public MapSegment this[int segmentIndex]
         {
-            get { return mapSegments[layerIndex][segmentIndex]; }
+            get { return mapSegments[segmentIndex]; }
         }
 
-        public int GetSegmentsCount(int layerIndex)
+        public int Count
         {
-            return mapSegments[layerIndex].Count;
+            get { return mapSegments.Count; }
         }
 
-        public void Add(int layerIndex, MapSegment segment)
+        public void Add(MapSegment segment)
         {
-            mapSegments[layerIndex].Add(segment);
+            mapSegments.Add(segment);
         }
     }
 }

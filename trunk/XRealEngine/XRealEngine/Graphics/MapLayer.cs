@@ -10,6 +10,13 @@ namespace XRealEngine.Framework.Graphics
     {
         private Color color;
         private float scale;
+        private float depth;
+
+        public float Depth
+        {
+            get { return depth; }
+            set { depth = value; }
+        }
 
         public Color Color
         {
@@ -23,10 +30,11 @@ namespace XRealEngine.Framework.Graphics
             set { scale = value; }
         }
 
-        public MapLayer(int scale, Color color)
+        public MapLayer(int scale, Color color, int depth)
         {
             this.Color = color;
             this.Scale = scale;
+            this.Depth = depth;
         }
     }
 }

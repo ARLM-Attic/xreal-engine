@@ -5,10 +5,17 @@ namespace XRealEngine.Framework.Graphics
 {
     public class MapSegment
     {
-        public Vector2 Location;
+        private Vector2 location;
         private int spriteSheetIndex;
         private int spriteDefinitionIndex;
         private int layerIndex;
+        private Rectangle boundingBox;
+
+        public Rectangle BoundingBox
+        {
+            get { return boundingBox; }
+            set { boundingBox = value; }
+        }
 
         public int LayerIndex
         {
@@ -26,6 +33,12 @@ namespace XRealEngine.Framework.Graphics
         {
             get { return spriteSheetIndex; }
             set { spriteSheetIndex = value; }
+        }
+
+        public Vector2 Location
+        {
+            get { return location; }
+            set { location = value; }
         }
 
 

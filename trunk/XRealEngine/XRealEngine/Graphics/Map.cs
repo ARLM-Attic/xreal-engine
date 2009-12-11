@@ -10,6 +10,7 @@ namespace XRealEngine.Framework.Graphics
     public class Map
     {
         private SpritesSheetCollection spritesSheets;
+        private MapLayersCollection layers;
 
         public Map()
         {
@@ -19,6 +20,11 @@ namespace XRealEngine.Framework.Graphics
         public void AddSpritesSheet(string spritesSheetName, ISpritesSheet spritesSheet)
         {
             spritesSheets.Add(spritesSheetName, spritesSheet);
+        }
+
+        public void AddLayer(MapLayer layer)
+        {
+            layers.Add(layer);
         }
     }
 }

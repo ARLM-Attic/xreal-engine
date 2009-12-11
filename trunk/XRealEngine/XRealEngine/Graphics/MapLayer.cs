@@ -30,7 +30,7 @@ namespace XRealEngine.Framework.Graphics
             set { scale = value; }
         }
 
-        public MapLayer(int scale, Color color, int depth)
+        public MapLayer(int scale, Color color, float depth)
         {
             this.Color = color;
             this.Scale = scale;

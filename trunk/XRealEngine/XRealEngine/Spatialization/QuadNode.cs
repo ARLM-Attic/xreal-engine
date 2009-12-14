@@ -17,7 +17,7 @@ namespace XRealEngine.Framework.Spatialization
         private QuadNode[] childrenNodes;
         private Rectangle boundingBox;
 
-        bool IsLeaf
+        private bool IsLeaf
         {
             get { return (childrenNodes == null); }
         }
@@ -37,11 +37,25 @@ namespace XRealEngine.Framework.Spatialization
 
         void Add(ISpatialElement element)
         {
-            this.elements.Add(element);
+            Rectangle[] subRects = QuadNode.GetSubRectangles(this.boundingBox);
+            int result = -1;
 
-            if (!this.boundingBox.Contains(element.BoundingBox)) // <- Pas Bon
+            for (int i = QuadNode.TopLeft; i <= BottomRight; i++)
             {
-                Subdivide();
+                if (subRects[i].Contains(element.BoundingBox))
+                {
+                    result = i;
+                }
+            }
+
+            if (result > 0)
+            {
+                if (this.IsLeaf) this.Subdivide();
+                this.childrenNodes[result].Add(element);
+            }
+            else
+            {
+                this.elements.Add(element);
             }
         }
 
@@ -60,6 +74,20 @@ namespace XRealEngine.Framework.Spatialization
             childrenNodes[QuadNode.TopRight] = new QuadNode(new Rectangle(this.boundingBox.Center.X, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
             childrenNodes[QuadNode.BottomRight] = new QuadNode(new Rectangle(this.boundingBox.Center.X, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
             childrenNodes[QuadNode.BottomLeft] = new QuadNode(new Rectangle(this.boundingBox.Left, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+        }
+
+        private static Rectangle[] GetSubRectangles(Rectangle rect)
+        {
+            Rectangle[] result = new Rectangle[4];
+            int halfWidth =  rect.Width / 2;
+            int halfHeight = rect.Height / 2;
+
+            result[QuadNode.TopLeft] = new Rectangle(rect.Left, rect.Top, halfWidth, halfHeight);
+            result[QuadNode.TopRight] = new Rectangle(rect.Center.X, rect.Top, halfWidth, halfHeight);
+            result[QuadNode.BottomLeft] = new Rectangle(rect.Left, rect.Center.Y, halfWidth, halfHeight);
+            result[QuadNode.BottomRight] = new Rectangle(rect.Center.X, rect.Center.Y, halfWidth, halfHeight);
+
+            return result;
         }
     }
 }

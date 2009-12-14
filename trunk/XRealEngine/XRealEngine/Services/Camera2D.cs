@@ -3,6 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace XRealEngine.Framework.Services
 {
+    //////////////////////////////////////////////////////////////////////////////////////////////////// 
+    /// <summary>
+    /// A basic 2D Camera
+    /// </summary>
+    //////////////////////////////////////////////////////////////////////////////////////////////////// 
     public class Camera2D : ICamera2D
     {
         #region Fields
@@ -15,6 +20,9 @@ namespace XRealEngine.Framework.Services
 
         #endregion
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>Get or set the zoom of the camera</summary>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
         public float Zoom
         {
             get { return zoom; }
@@ -24,7 +32,10 @@ namespace XRealEngine.Framework.Services
                 CreateTransformationMatrix();
             }
         }
-        
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>Get or set the rotation of the camera (in radians)</summary>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
         public float Rotation
         {
             get { return rotation; }
@@ -34,7 +45,10 @@ namespace XRealEngine.Framework.Services
                 CreateTransformationMatrix();
             }
         }
-        
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>Get or set the position of the camera</summary>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
         public Vector2 Position
         {
             get { return position; }
@@ -48,11 +62,19 @@ namespace XRealEngine.Framework.Services
             }
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>Get the transformation matrix to use with a spritebatch object to obtain the camera effect</summary>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
         public Matrix TransformationMatrix
         {
             get { return transformationMatrix; }
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>Create a new camera</summary>
+        /// <param name="game">The game which the camera is attached to</param>
+        /// <remarks>The camera register itself in the game services collection</remarks>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
         public Camera2D(Game game)
         {
             game.Services.AddService(typeof(ICamera2D), this);
@@ -64,6 +86,9 @@ namespace XRealEngine.Framework.Services
             CreateTransformationMatrix();
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>Create the transformation matrix needed by the sprite batch</summary>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
         private void CreateTransformationMatrix()
         {
             transformationMatrix = Matrix.CreateTranslation(new Vector3(-position.X, -position.Y, 0)) *

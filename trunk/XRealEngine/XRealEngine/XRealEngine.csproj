@@ -100,6 +100,7 @@
     <Compile Include="Services\ICamera2D.cs" />
     <Compile Include="Spatialization\ISpatialElement.cs" />
     <Compile Include="Spatialization\QuadNode.cs" />
+    <Compile Include="Spatialization\QuadTree.cs" />
   </ItemGroup>
   <ItemGroup>
     <NestedContentProject Include="Content\Content.contentproj">

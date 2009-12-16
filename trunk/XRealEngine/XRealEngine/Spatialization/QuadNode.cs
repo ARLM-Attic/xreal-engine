@@ -6,47 +6,38 @@ using Microsoft.Xna.Framework;
 
 namespace XRealEngine.Framework.Spatialization
 {
-    class QuadNode
+    public class QuadNode<T> where T : ISpatialElement
     {
         private const int TopLeft = 0;
         private const int TopRight = 1;
         private const int BottomLeft = 2;
         private const int BottomRight = 3;
 
-        private List<ISpatialElement> elements;
-        private QuadNode[] childrenNodes;
+        private List<T> elements;
+        private QuadNode<T>[] childrenNodes;
         private Rectangle boundingBox;
 
-        private bool IsLeaf
+        protected bool IsLeaf
         {
             get { return (childrenNodes == null); }
         }
 
-        public Rectangle BoundingBox
+        protected Rectangle BoundingBox
         {
             get { return boundingBox; }
             set { boundingBox = value; }
         }
         
-        QuadNode(Rectangle boundingBox)
+        protected QuadNode(Rectangle boundingBox)
         {
-            this.elements = new List<ISpatialElement>();
+            this.elements = new List<T>();
             this.BoundingBox = boundingBox;
             this.childrenNodes = null;
         }
 
-        void Add(ISpatialElement element)
+        public virtual void Add(T element)
         {
-            Rectangle[] subRects = QuadNode.GetSubRectangles(this.boundingBox);
-            int result = -1;
-
-            for (int i = QuadNode.TopLeft; i <= BottomRight; i++)
-            {
-                if (subRects[i].Contains(element.BoundingBox))
-                {
-                    result = i;
-                }
-            }
+            int result = TestElement(element);
 
             if (result > 0)
             {
@@ -59,7 +50,19 @@ namespace XRealEngine.Framework.Spatialization
             }
         }
 
-        private void Subdivide()
+        protected int TestElement(T element)
+        {
+            Rectangle[] subRects = QuadNode<T>.GetSubRectangles(this.boundingBox);
+
+            for (int i = QuadNode<T>.TopLeft; i <= BottomRight; i++)
+            {
+                if (subRects[i].Contains(element.BoundingBox)) return i;
+            }
+
+            return -1;
+        }
+
+        protected void Subdivide()
         {
             if (this.IsLeaf)
             {
@@ -67,13 +70,13 @@ namespace XRealEngine.Framework.Spatialization
             }
         }
 
-        private void CreateChildrenNodes()
+        protected void CreateChildrenNodes()
         {
-            childrenNodes = new QuadNode[4];
-            childrenNodes[QuadNode.TopLeft] = new QuadNode(new Rectangle(this.boundingBox.Left, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
-            childrenNodes[QuadNode.TopRight] = new QuadNode(new Rectangle(this.boundingBox.Center.X, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
-            childrenNodes[QuadNode.BottomRight] = new QuadNode(new Rectangle(this.boundingBox.Center.X, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
-            childrenNodes[QuadNode.BottomLeft] = new QuadNode(new Rectangle(this.boundingBox.Left, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+            childrenNodes = new QuadNode<T>[4];
+            childrenNodes[QuadNode<T>.TopLeft] = new QuadNode<T>(new Rectangle(this.boundingBox.Left, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+            childrenNodes[QuadNode<T>.TopRight] = new QuadNode<T>(new Rectangle(this.boundingBox.Center.X, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+            childrenNodes[QuadNode<T>.BottomRight] = new QuadNode<T>(new Rectangle(this.boundingBox.Center.X, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+            childrenNodes[QuadNode<T>.BottomLeft] = new QuadNode<T>(new Rectangle(this.boundingBox.Left, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
         }
 
         private static Rectangle[] GetSubRectangles(Rectangle rect)
@@ -82,10 +85,10 @@ namespace XRealEngine.Framework.Spatialization
             int halfWidth =  rect.Width / 2;
             int halfHeight = rect.Height / 2;
 
-            result[QuadNode.TopLeft] = new Rectangle(rect.Left, rect.Top, halfWidth, halfHeight);
-            result[QuadNode.TopRight] = new Rectangle(rect.Center.X, rect.Top, halfWidth, halfHeight);
-            result[QuadNode.BottomLeft] = new Rectangle(rect.Left, rect.Center.Y, halfWidth, halfHeight);
-            result[QuadNode.BottomRight] = new Rectangle(rect.Center.X, rect.Center.Y, halfWidth, halfHeight);
+            result[QuadNode<T>.TopLeft] = new Rectangle(rect.Left, rect.Top, halfWidth, halfHeight);
+            result[QuadNode<T>.TopRight] = new Rectangle(rect.Center.X, rect.Top, halfWidth, halfHeight);
+            result[QuadNode<T>.BottomLeft] = new Rectangle(rect.Left, rect.Center.Y, halfWidth, halfHeight);
+            result[QuadNode<T>.BottomRight] = new Rectangle(rect.Center.X, rect.Center.Y, halfWidth, halfHeight);
 
             return result;
         }

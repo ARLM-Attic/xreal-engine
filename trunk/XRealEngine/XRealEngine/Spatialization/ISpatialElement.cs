@@ -2,7 +2,7 @@
 
 namespace XRealEngine.Framework.Spatialization
 {
-    interface ISpatialElement
+    public interface ISpatialElement
     {
         Rectangle BoundingBox
         {

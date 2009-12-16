@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using XRealEngine.Framework.Spatialization;
 
 namespace XRealEngine.Framework.Graphics
 {
-    public class MapSegment
+    public class MapSegment:ISpatialElement
     {
         private Vector2 location;
         private int spriteSheetIndex;

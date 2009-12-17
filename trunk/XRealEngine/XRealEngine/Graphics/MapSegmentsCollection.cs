@@ -16,7 +16,7 @@ namespace XRealEngine.Framework.Graphics
 
         public void Add(MapSegment segment)
         {
-            //mapSegments.Add(segment);
+            mapSegments.Add(segment);
         }
     }
 }

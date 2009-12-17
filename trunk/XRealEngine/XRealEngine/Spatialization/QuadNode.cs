@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
@@ -16,37 +15,97 @@ namespace XRealEngine.Framework.Spatialization
         private List<T> elements;
         private QuadNode<T>[] childrenNodes;
         private Rectangle boundingBox;
+        private QuadNode<T> parentNode;
 
         protected bool IsLeaf
         {
             get { return (childrenNodes == null); }
         }
 
+        protected bool IsRoot
+        {
+            get { return (parentNode == null); }
+        }
+
         protected Rectangle BoundingBox
         {
-            get { return boundingBox; }
-            set { boundingBox = value; }
+            get 
+            { 
+                return boundingBox; 
+            }
+            set
+            {
+                if (boundingBox != value)
+                {
+                    boundingBox = value;
+                    if (!this.IsLeaf)
+                    {
+                        ReAffectBoundingBoxes();
+                    }
+
+                    ReAffectElements();
+
+                }
+            }
         }
-        
-        protected QuadNode(Rectangle boundingBox)
+
+        private void ReAffectBoundingBoxes()
+        {
+            if (!this.IsLeaf)
+            {
+                Rectangle[] subRects = QuadNode<T>.GetSubRectangles(this.boundingBox);
+                childrenNodes[QuadNode<T>.TopLeft].BoundingBox = subRects[QuadNode<T>.TopLeft];
+                childrenNodes[QuadNode<T>.TopRight].BoundingBox = subRects[QuadNode<T>.TopRight];
+                childrenNodes[QuadNode<T>.BottomLeft].BoundingBox = subRects[QuadNode<T>.BottomLeft];
+                childrenNodes[QuadNode<T>.BottomRight].BoundingBox = subRects[QuadNode<T>.BottomRight];
+            }
+        }
+
+        private void ReAffectElements()
+        {
+            T[] tempElementsList = this.elements.ToArray();
+            this.elements.Clear();
+            
+            for (int i = 0; i < tempElementsList.Length; i++)
+            {
+                if (this.boundingBox.Contains(tempElementsList[i].BoundingBox))
+                {
+                    this.Add(tempElementsList[i]);
+                }
+                else
+                {
+                    this.parentNode.Add(tempElementsList[i]);
+                }
+            }
+        }
+
+        protected QuadNode(QuadNode<T> parentNode, Rectangle boundingBox)
         {
             this.elements = new List<T>();
             this.BoundingBox = boundingBox;
             this.childrenNodes = null;
+            this.parentNode = parentNode;
         }
 
         public virtual void Add(T element)
         {
             int result = TestElement(element);
 
-            if (result > 0)
+            if (result >= 0)
             {
                 if (this.IsLeaf) this.Subdivide();
                 this.childrenNodes[result].Add(element);
             }
             else
             {
-                this.elements.Add(element);
+                if (this.boundingBox.Contains(element.BoundingBox))
+                {
+                    this.elements.Add(element);
+                }
+                else
+                {
+                    throw new ArgumentException("The element is bigger than this QuadNode", "element");
+                }
             }
         }
 
@@ -73,10 +132,10 @@ namespace XRealEngine.Framework.Spatialization
         protected void CreateChildrenNodes()
         {
             childrenNodes = new QuadNode<T>[4];
-            childrenNodes[QuadNode<T>.TopLeft] = new QuadNode<T>(new Rectangle(this.boundingBox.Left, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
-            childrenNodes[QuadNode<T>.TopRight] = new QuadNode<T>(new Rectangle(this.boundingBox.Center.X, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
-            childrenNodes[QuadNode<T>.BottomRight] = new QuadNode<T>(new Rectangle(this.boundingBox.Center.X, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
-            childrenNodes[QuadNode<T>.BottomLeft] = new QuadNode<T>(new Rectangle(this.boundingBox.Left, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+            childrenNodes[QuadNode<T>.TopLeft] = new QuadNode<T>(this, new Rectangle(this.boundingBox.Left, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+            childrenNodes[QuadNode<T>.TopRight] = new QuadNode<T>(this, new Rectangle(this.boundingBox.Center.X, this.boundingBox.Top, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+            childrenNodes[QuadNode<T>.BottomRight] = new QuadNode<T>(this, new Rectangle(this.boundingBox.Center.X, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
+            childrenNodes[QuadNode<T>.BottomLeft] = new QuadNode<T>(this, new Rectangle(this.boundingBox.Left, this.boundingBox.Center.Y, this.boundingBox.Width / 2, this.boundingBox.Height / 2));
         }
 
         private static Rectangle[] GetSubRectangles(Rectangle rect)

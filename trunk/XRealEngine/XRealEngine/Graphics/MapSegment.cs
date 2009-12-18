@@ -6,16 +6,24 @@ namespace XRealEngine.Framework.Graphics
 {
     public class MapSegment:ISpatialElement
     {
-        private Point location;
         private int spriteSheetIndex;
         private int spriteDefinitionIndex;
         private int layerIndex;
         private Rectangle boundingBox;
 
+        public event EventHandler Moved;
+
         public Rectangle BoundingBox
         {
             get { return boundingBox; }
-            set { boundingBox = value; }
+            set
+            {
+                if (boundingBox != value)
+                {
+                    boundingBox = value;
+                    if (Moved != null) Moved(this, EventArgs.Empty);
+                }
+            }
         }
 
         public int LayerIndex
@@ -38,14 +46,15 @@ namespace XRealEngine.Framework.Graphics
 
         public Point Location
         {
-            get { return location; }
-            set 
-            { 
-                location = value;
-                boundingBox.Location = value;
+            get { return boundingBox.Location; }
+            set
+            {
+                if (boundingBox.Location != value)
+                {
+                    boundingBox.Location = value;
+                    if (Moved != null) Moved(this, EventArgs.Empty);
+                }
             }
         }
-
-
     }
 }

@@ -20,6 +20,7 @@ namespace XRealEngine.Framework.Services
 
         #endregion
 
+        #region Properties
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
         /// <summary>Get or set the zoom of the camera</summary>
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -69,7 +70,9 @@ namespace XRealEngine.Framework.Services
         {
             get { return transformationMatrix; }
         }
+        #endregion
 
+        #region Constructors
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
         /// <summary>Create a new camera</summary>
         /// <param name="game">The game which the camera is attached to</param>
@@ -85,7 +88,9 @@ namespace XRealEngine.Framework.Services
             position = Vector2.Zero;
             CreateTransformationMatrix();
         }
+        #endregion
 
+        #region Methods
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
         /// <summary>Create the transformation matrix needed by the sprite batch</summary>
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -96,5 +101,6 @@ namespace XRealEngine.Framework.Services
                                         Matrix.CreateScale(new Vector3(zoom, zoom, 0)) *
                                         Matrix.CreateTranslation(new Vector3(graphics.Viewport.Width * 0.5f, graphics.Viewport.Height * 0.5f, 0));
         }
+        #endregion
     }
 }

@@ -51,8 +51,8 @@ namespace ANotSoDeadPirate
             map.AddSegment(0, 0, 1, new Point(10, 10));
             map.AddSegment(0, 0, 5, new Point(500, 300));
             map.AddSegment(0, 0, 2, new Point(1000, 1000));
-            map.AddSegment(0, 0, 3, new Point(200, 400));
-
+            MapSegment test = map.AddSegment(0, 0, 3, new Point(200, 400));
+            test.Location = new Point(100, 100);
         }
 
         /// <summary>

@@ -34,17 +34,20 @@ namespace XRealEngine.Framework.Graphics
             segments.Add(segment);
         }
 
-        public void AddSegment(int layerIndex, int spriteSheetIndex, int spriteDefinitionIndex, Point location)
+        public MapSegment AddSegment(int layerIndex, int spriteSheetIndex, int spriteDefinitionIndex, Point location)
         {
             MapSegment segment = new MapSegment();
-            
+            Rectangle boundingBox = spritesSheets[spriteSheetIndex][spriteDefinitionIndex].Rectangle;
+            boundingBox.Location = location;
+
             segment.LayerIndex = layerIndex;
-            segment.BoundingBox = spritesSheets[spriteSheetIndex][spriteDefinitionIndex].Rectangle;
-            segment.Location = location;
+            segment.BoundingBox = boundingBox;
             segment.SpriteSheetIndex = spriteSheetIndex;
             segment.SpriteDefinitionIndex = spriteDefinitionIndex;
 
             segments.Add(segment);
+
+            return segment;
         }
     }
 }

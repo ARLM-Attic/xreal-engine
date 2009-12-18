@@ -46,7 +46,7 @@ namespace ANotSoDeadPirate
             map = new Map();
 
             // TODO: use this.Content to load your game content here
-            map.AddSpritesSheet("test1", Content.Load<SpritesSheet>("test1"));
+            map.AddSpritesSheet(Content.Load<SpritesSheet>("test1"));
             map.AddLayer(new MapLayer(1, Color.White, 0.1f));
             map.AddSegment(0, 0, 1, new Point(10, 10));
             map.AddSegment(0, 0, 5, new Point(500, 300));

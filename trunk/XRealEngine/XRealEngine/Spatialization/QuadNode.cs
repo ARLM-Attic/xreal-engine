@@ -233,6 +233,10 @@ namespace XRealEngine.Framework.Spatialization
             if (this.IsLeaf)
             {
                 childrenNodes = new QuadNode<T>[4];
+                childrenNodes[TopLeft] = new QuadNode<T>(this, Rectangle.Empty);
+                childrenNodes[TopRight] = new QuadNode<T>(this, Rectangle.Empty);
+                childrenNodes[BottomLeft] = new QuadNode<T>(this, Rectangle.Empty);
+                childrenNodes[BottomRight] = new QuadNode<T>(this, Rectangle.Empty);
                 InitializeChildrenNodesBoundingBoxes();
             }
         }

@@ -13,7 +13,7 @@ namespace XRealEngine.Editor.Components
         public event SpriteEventHandler SpriteRemoved;
         public event SpriteEventHandler SpriteAdded;
 
-        private List<SpritesSheet> sheets;
+        private SpritesSheetCollection sheets;
         private SpritesSheet selectedSheet;
         private SpriteDefinition selectedSprite;
 
@@ -61,13 +61,15 @@ namespace XRealEngine.Editor.Components
         {
             InitializeComponent();
 
-            sheets = new List<SpritesSheet>();
+            sheets = new SpritesSheetCollection();
         }
 
         public void AddSpritesSheet(SpritesSheet sheet)
         {
             sheets.Add(sheet);
+            FillCombo();
             this.SelectedSheet = sheet;
+            
         }
 
         private void FillList()
@@ -84,6 +86,14 @@ namespace XRealEngine.Editor.Components
             }
         }
 
+        private void FillCombo()
+        {
+            this.comboBox1.Items.Clear();
+            for (int i = 0; i < sheets.Count; i++)
+            {
+                this.comboBox1.Items.Add(String.Format("Sprites Sheet {0}", i));
+            }
+        }
 
         private Bitmap GetImageFromTexture(Microsoft.Xna.Framework.Rectangle rect, Texture2D texture)
         {

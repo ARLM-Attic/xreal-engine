@@ -127,6 +127,7 @@ namespace XRealEngine.Framework.Graphics
                 sprite.Name = String.Format("sprite_{0:D2}", NextSpriteIndex);
             }
             spritesList.Add(sprite);
+            sprite.Texture = this.Texture;
         }
 
         public bool ContainsByName(string name)

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using XRealEngine.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace XRealEngine.Framework.Graphics
 {
@@ -24,6 +24,12 @@ namespace XRealEngine.Framework.Graphics
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
         [ContentSerializer(ElementName = "Rectangle")]
         private Rectangle rectangle;
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>The boundaries of the sprite in the sprites sheet</summary>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        [ContentSerializer(ElementName = "Texture")]
+        private Texture2D texture;
         
         #endregion
 
@@ -42,6 +48,22 @@ namespace XRealEngine.Framework.Graphics
             internal set 
             {
                 name = value;
+            }
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        /// <summary>Gets / Sets the texture of the sprite definition</summary>
+        //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        [ContentSerializerIgnore]
+        public Texture2D Texture
+        {
+            get
+            {
+                return texture;
+            }
+            internal set
+            {
+                texture = value;
             }
         }
 
@@ -140,7 +162,6 @@ namespace XRealEngine.Framework.Graphics
         public SpriteDefinition()
         {
         }
-
 
         #endregion
     }
